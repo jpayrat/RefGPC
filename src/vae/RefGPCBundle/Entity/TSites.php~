@@ -1,0 +1,68 @@
+<?php
+
+namespace vae\RefGPCBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * TSites
+ *
+ * @ORM\Table(name="t_sites")
+ * @ORM\Entity
+ */
+class TSites
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="siLibelleSite", type="string", length=100, nullable=true)
+     */
+    private $silibellesite;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="siCodeBase", type="string", length=2, nullable=true)
+     */
+    private $sicodebase;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="siOldIdSite", type="string", length=10, nullable=true)
+     */
+    private $sioldidsite;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="siOldNameSite", type="string", length=100, nullable=true)
+     */
+    private $sioldnamesite;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="siOldZoneSite", type="string", length=25, nullable=true)
+     */
+    private $sioldzonesite;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="siZoneEtlSite", type="string", length=2, nullable=true)
+     */
+    private $sizoneetlsite;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="siIdSite", type="string", length=10)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $siidsite;
+
+
+}
+

@@ -1,0 +1,43 @@
+{# src/vae/RefGPCBundle/Resources/views/Accueil/accueil.html.twig #}
+
+{% extends "vaeRefGPCBundle::default.html.twig" %}
+
+
+{% block title %}{{ parent() }} - Référentiel GPC{% endblock %}
+
+
+{% block body %}
+
+  {{ include("vaeRefGPCBundle::navHorizontal.html.twig") }}
+  
+  <section class="corps">
+  
+    {{ include("vaeRefGPCBundle::navVertical.html.twig") }}
+  
+    <div class="container" id="ilot_corps">
+
+        <h1>Ilots GPC - {{ libelleBase }} - {{ nbIlots }} îlots // Code base : {{ codeBase }}</h1>
+ 
+        <br />
+        Formulaire de recherche des ilots <br /><br />
+        - Recherche global et bouton<br />
+        - Suite du formulaire caché<br />
+        - Un div result pour afficher le resultat de la recherche en jquery
+        
+       
+        
+        <br /><br />
+        
+        {{ form(form) }} 
+        
+        <br /><br />
+        
+        {{ dump(newIlot) }}
+        
+        
+    </div>
+  </section>
+  
+    {{ include("vaeRefGPCBundle::piedPage.html.twig") }}
+        
+{% endblock %}

@@ -1,0 +1,40 @@
+<?php
+
+namespace vae\RefGPCBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * TInfosbase
+ *
+ * @ORM\Table(name="t_infosBase")
+ * @ORM\Entity
+ */
+class TInfosbase
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ibCodeBase", type="string", length=2, nullable=true)
+     */
+    private $ibcodebase;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ibLibelleBase", type="string", length=50, nullable=true)
+     */
+    private $iblibellebase;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ibIdInfosBase", type="string", length=2)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $ibidinfosbase;
+
+
+}
+

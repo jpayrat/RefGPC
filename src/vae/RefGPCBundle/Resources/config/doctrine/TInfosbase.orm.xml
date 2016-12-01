@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="vae\RefGPCBundle\Entity\TInfosbase" table="t_infosBase">
+    <id name="ibidinfosbase" type="string" column="ibIdInfosBase" length="2">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="ibcodebase" type="string" column="ibCodeBase" length="2" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="iblibellebase" type="string" column="ibLibelleBase" length="50" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

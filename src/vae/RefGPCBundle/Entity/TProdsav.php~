@@ -1,0 +1,33 @@
+<?php
+
+namespace vae\RefGPCBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * TProdsav
+ *
+ * @ORM\Table(name="t_prodsav")
+ * @ORM\Entity
+ */
+class TProdsav
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="prsLibelleProdSav", type="string", length=50, nullable=true)
+     */
+    private $prslibelleprodsav;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="prsIdProdSav", type="string", length=15)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $prsidprodsav;
+
+
+}
+

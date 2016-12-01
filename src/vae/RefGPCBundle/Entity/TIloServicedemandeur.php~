@@ -1,0 +1,40 @@
+<?php
+
+namespace vae\RefGPCBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * TIloServicedemandeur
+ *
+ * @ORM\Table(name="t_ilo_servicedemandeur")
+ * @ORM\Entity
+ */
+class TIloServicedemandeur
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="seLibelleServDom", type="string", length=50, nullable=true)
+     */
+    private $selibelleservdom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sedCodeBase", type="string", length=2, nullable=true)
+     */
+    private $sedcodebase;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sedIdServDem", type="string", length=15)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $sedidservdem;
+
+
+}
+

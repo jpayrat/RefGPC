@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="vae\RefGPCBundle\Entity\TIloCompetences" table="t_ilo_competences">
+    <id name="coidcompetence" type="string" column="coIdCompetence" length="70">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="colibellecompetence" type="string" column="coLibelleCompetence" length="100" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="cocodebase" type="string" column="coCodeBase" length="2" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

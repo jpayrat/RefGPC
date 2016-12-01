@@ -1,0 +1,40 @@
+<?php
+
+namespace vae\RefGPCBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * TIloCompetences
+ *
+ * @ORM\Table(name="t_ilo_competences")
+ * @ORM\Entity
+ */
+class TIloCompetences
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="coLibelleCompetence", type="string", length=100, nullable=true)
+     */
+    private $colibellecompetence;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="coCodeBase", type="string", length=2, nullable=true)
+     */
+    private $cocodebase;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="coIdCompetence", type="string", length=70)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $coidcompetence;
+
+
+}
+

@@ -1,0 +1,47 @@
+<?php
+
+namespace vae\RefGPCBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * TIloEntreprise
+ *
+ * @ORM\Table(name="t_ilo_entreprise")
+ * @ORM\Entity
+ */
+class TIloEntreprise
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="enLibelleEntreprise", type="string", length=50, nullable=true)
+     */
+    private $enlibelleentreprise;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="enZoneETREntreprise", type="string", length=2, nullable=true)
+     */
+    private $enzoneetrentreprise;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="enCodeBase", type="string", length=2, nullable=true)
+     */
+    private $encodebase;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="enIdEntreprise", type="string", length=20)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $enidentreprise;
+
+
+}
+

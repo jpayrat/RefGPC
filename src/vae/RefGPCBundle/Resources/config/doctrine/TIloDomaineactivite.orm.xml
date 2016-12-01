@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="vae\RefGPCBundle\Entity\TIloDomaineactivite" table="t_ilo_domaineactivite">
+    <id name="daiddomact" type="string" column="daIdDomAct" length="25">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="dalibelledomact" type="string" column="daLibelleDomAct" length="50" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="dadetaildomact" type="string" column="daDetailDomAct" length="25" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="dacodebase" type="string" column="daCodeBase" length="2" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

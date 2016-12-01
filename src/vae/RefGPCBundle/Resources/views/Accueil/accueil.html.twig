@@ -1,0 +1,39 @@
+{# src/vae/RefGPCBundle/Resources/views/Accueil/accueil.html.twig #}
+
+{% extends "vaeRefGPCBundle::default.html.twig" %}
+
+
+{% block title %}{{ parent() }} - Référentiel GPC{% endblock %}
+
+
+{% block body %}
+
+  {{ include("vaeRefGPCBundle::navHorizontal.html.twig") }}
+  
+  <section class="corps">
+  
+    {{ include("vaeRefGPCBundle::navVertical.html.twig") }}
+  
+    <div class="container" id="ilot_corps">
+
+        <h1>Tableau de bord - {{ libelleBase }}</h1>
+ 
+        <br />
+        Le tableau de bord contiendra pour MP différent de LR : <br /><br />
+        - un récap des différents fichier uploadé avec la date de mise en ligne
+        permet de voir si l'upload du matin a réussi<br />
+        - Un récap du nombre de centre et du nombre d'îlot<br />
+        - la liste des modifications des 3 derniers jours
+        
+       
+        
+        <br /><br />
+        
+         
+        
+    </div>
+  </section>
+  
+    {{ include("vaeRefGPCBundle::piedPage.html.twig") }}
+        
+{% endblock %}
