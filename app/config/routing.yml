@@ -1,0 +1,7 @@
+vae_ref_gpc:
+    resource: "@vaeRefGPCBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
