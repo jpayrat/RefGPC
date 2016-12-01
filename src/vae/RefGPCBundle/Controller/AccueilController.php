@@ -10,7 +10,7 @@ use vae\RefGPCBundle\usrClass\InfosBase;
 /**
  * Description of AccueilController
  *
- * @author julien
+ * @author julien test
  */
 
 class AccueilController extends Controller  {
