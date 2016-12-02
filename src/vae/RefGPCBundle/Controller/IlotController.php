@@ -75,7 +75,7 @@ class IlotController extends Controller {
         $ilot = new TmIlots();
         $competence = new TIloCompetences();
         
-    $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, array($ilot, $competence));
+    $formBuilder = $this->get('form.factory')->createBuilder();
     
     
     
@@ -109,9 +109,9 @@ class IlotController extends Controller {
         
     ],
     'choice_label' => function($competence) {
-        return strtoupper($competence->getColibellecompetence());  
+        return strtoupper($competence->getCoidcompetence());  
     },
-    'choice_attr' => function($comptence) {
+    'choice_attr' => function($competence) {
         return ['class' => 'competence_'.strtolower($competence->getCoidcompetence())];
     }
         ]) 
