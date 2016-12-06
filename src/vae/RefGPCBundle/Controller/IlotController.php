@@ -8,6 +8,7 @@ use vae\RefGPCBundle\Entity\TmIlots;
 use vae\RefGPCBundle\Entity\TIloCompetences;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\RadioType;
@@ -18,6 +19,10 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Doctrine\ORM\EntityRepository;
+
+
 /**
  * Description of Ilot
  *
@@ -27,6 +32,22 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 class IlotController extends Controller {
     //put your code here
 
+    public function ajaxIlotRechercheAction( Request $request )
+    {
+        if ($request->isXmlHttpRequest()) {
+
+                    
+            return ('sucess');
+        }
+        else
+        {
+        
+        return ('falsee');
+        }
+    }
+    
+    
+    
     public function indexAction($base, Request $request)
     {
         // initialisation du repository
@@ -81,49 +102,96 @@ class IlotController extends Controller {
     
     // On ajoute les champs de l'entité que l'on veut à notre formulaire
     $formBuilder
-      ->add('iloCodeIlot',     TextType::class)
-      ->add('tIloEntrepriseEnidentreprise',   TextareaType::class)
-      ->add('tIloUsedUidused',    CheckboxType::class)
-      ->add('ilolibelleilot', RadioType::class)
-      ->add('iloCodeIlot', ChoiceType::class, [
-    'choices' => [
-        
-        //$newCompetence = new TIloCompetences(),
+        ->add('iloCodeIlot',     TextType::class)
+        ->add('tIloEntrepriseEnidentreprise',   TextareaType::class)
+        ->add('tIloUsedUidused',    CheckboxType::class)
+        ->add('ilolibelleilot', RadioType::class)
+        ->add('iloCodeIlot', ChoiceType::class, [
+    'choices' => 
         $ilot = $repositoryIlot->findBy(array('ilocodebase' => $codeBase)),
-        //$competence = $repositoryCompetence->findBy(array('cocodebase' => $codeBase)),
-        
-    ],
+
     'choice_label' => function($ilot) {
-        return strtoupper($ilot->getIlocodeilot());
-        //return strtoupper($competence->getColibellecompetence());  
+        return strtoupper($ilot->getIlolibelleilot());
+     
     },
     'choice_attr' => function($ilot) {
         return ['class' => 'ilot_'.strtolower($ilot->getIlocodeilot())];
-        //return ['class' => 'competence_'.strtolower($competence->getCoidcompetence())];
-    }
-        ])  
-          ->add('coIdCompetence', ChoiceType::class, [
-    'choices' => [
+
+    }])  
         
-        $competence = $repositoryCompetence->findBy(array('cocodebase' => $codeBase)),
-        
-    ],
+        ->add('coIdCompetence', ChoiceType::class, [
+    'choices' => 
+        $competence = $repositoryCompetence->findBy(array('cocodebase' => $codeBase)), 
+    
     'choice_label' => function($competence) {
         return strtoupper($competence->getCoidcompetence());  
     },
+            
     'choice_attr' => function($competence) {
         return ['class' => 'competence_'.strtolower($competence->getCoidcompetence())];
-    }
-        ]) 
-      ->add('save',      SubmitType::class)
+    }]) 
+    
+    ->add('TestCompetences', EntityType::class, array(
+        'class'=>'vaeRefGPCBundle:TIloCompetences',  
+        'placeholder' => 'test',
+        'query_builder'=> function (EntityRepository $er) use ($codeBase)
+    {
+         return $er->createQueryBuilder('a')
+            ->where('a.cocodebase = :codebase')
+            ->setParameter('codebase', $codeBase);
+    },
+        'choice_label'=>'coIdCompetence',
+        'choice_value' => 'coIdCompetence',
+        'data' => $repo->getReference("vaeRefGPCBundle:TIloCompetences", 3),
+        'required'    => false,
+    
+    
+    
+    
+            
+    
+   
+            /*'choice_label'=>'Choix de categorie parent',*/
+    ))
+    
+    /*
+     * 'query_builder' => function(CandidateCampaignRepository $er) use ($id)
+                {
+                        return $er->createQueryBuilder('a')
+                                        ->where('a.candidate = :id')
+                                        ->setParameter('id', $id);
+                },
+                        ))
+     * 
+     * 
+     * 
+        ->add('coIdCompetence', EntityType::class, array(
+
+        'class'        => 'vaeRefGPCBundle:Entity:TIloCompetences',
+
+        'choice_label' => 'coIdCompetences',
+
+        'multiple'     => false,
+
+  ))*/
+    
+    
+    
+     
+        ->add('save',      SubmitType::class)
     ;
 
     // Pour l'instant, pas de candidatures, catégories, etc., on les gérera plus tard
     // À partir du formBuilder, on génère le formulaire
 
-    $form = $formBuilder->getForm();
+    
+  /*  $option = '';
+$testform = new \vae\RefGPCBundle\Form\TIloCompetencesType();
+$testselect = $testform->buildForm($formBuilder, $option);
+   
+   */
 
-
+ $form = $formBuilder->getForm();
 
 
     // On passe la méthode createView() du formulaire à la vue
@@ -138,6 +206,7 @@ class IlotController extends Controller {
         'base' => $base,
         'form' => $form->createView(),
         'newIlot' => $ilot
+        
         ));
         
         

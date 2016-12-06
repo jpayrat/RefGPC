@@ -13,7 +13,16 @@ vae_refgpc_ilot:
        base:    MP
     requirements: 
        base:   LR|MP|AD
-       
+ 
+vae_refgpc_ilotRecherche:
+    path: /{base}/ilot/recherche
+    defaults:
+       _controller: vaeRefGPCBundle:Ilot:ajaxIlotRecherche 
+       base: MP
+    requirements:
+        _method: POST
+        base:   LR|MP|AD
+        
 vae_refgpc_centre:
     path:     /{base}/centre
     defaults:

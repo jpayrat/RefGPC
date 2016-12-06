@@ -24,15 +24,80 @@
         - Suite du formulaire caché<br />
         - Un div result pour afficher le resultat de la recherche en jquery
         
-       
+        <br /><br />
+        
+        {{ form(form)}}
+        
+        
         
         <br /><br />
         
-        {{ form(form) }} 
         
-        <br /><br />
+        <div id="results_ilot">
+            <div id="box"><a href="#">click</a></div>
+        </div>
         
-        {{ dump(newIlot) }}
+        {#{ dump(newIlot) }#}
+        <script>
+        
+        myvar = 'plop2';
+        //alert(myvar);
+    
+            
+    
+        </script>
+        
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script> 
+        <script> 
+            
+$(document).ready(function () {
+                
+                $("#box").click(function(e){
+                //$("#form_save").submit(function(e){
+                     
+        //alert('plop');
+
+    var formURL = "{{ path('vae_refgpc_ilotRecherche') }}";
+    //alert(formURL);
+    var myvar = document.getElementById('form_recherche'); 
+    var formData = new FormData(myvar);
+    //alert(JSON.stringify(formData));
+    
+    var form = $('#form_recherche');
+    
+    //var fd = new FormData(document.getElementById("form_recherche"));
+    alert(form.toSource());
+    
+    $.ajax({
+                type: 'GET', // envoi des données en GET ou POST
+                url: formURL,
+                // renseignée dans le haut de la page : vues/haut.php
+                data: formData,
+                beforeSend: function () { // traitements JS à faire AVANT l'envoi
+                    //alert('beforeSend php_ilot : ' + php_ilot);
+
+                    $('#results_ilot').empty();
+                    //$('#ajaxLoader').show(); // ajout d'un loader pour signifier l'action
+                },
+                success: function (data) {
+                    // traitements JS à faire APRES le retour du fichier .php
+                    //alert('success: '+data);
+                    //$('#ajaxLoader').hide();
+                    $('#results_ilot').fadeIn().html(data); // affichage des résultats dans le bloc #results
+                }
+            });
+    
+    
+    
+    
+    
+});
+
+
+});
+        
+        </script>
         
         
     </div>
