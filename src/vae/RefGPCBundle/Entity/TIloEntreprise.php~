@@ -29,18 +29,20 @@ class TIloEntreprise
     /**
      * @var string
      *
-     * @ORM\Column(name="enCodeBase", type="string", length=2, nullable=true)
+     * @ORM\Column(name="enIdEntreprise", type="string", length=20)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
      */
-    private $encodebase;
+    private $enidentreprise;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="enIdEntreprise", type="string", length=20)
+     * @ORM\Column(name="enCodeBase", type="string", length=2)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="NONE")
      */
-    private $enidentreprise;
+    private $encodebase;
 
 
 }

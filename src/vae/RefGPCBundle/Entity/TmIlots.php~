@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * TmIlots
  *
- * @ORM\Table(name="TM_Ilots", indexes={@ORM\Index(name="fk_TM_Ilots_t_ilo_bandeau1_idx", columns={"t_ilo_bandeau_banIdnBandeau"}), @ORM\Index(name="fk_TM_Ilots_t_ilo_competences1_idx", columns={"t_ilo_competences_coIdCompetence"}), @ORM\Index(name="fk_TM_Ilots_t_ilo_typeilot1_idx", columns={"t_ilo_typeilot_tiIdTypeIlot"}), @ORM\Index(name="fk_TM_Ilots_t_ilo_servicedemandeur1_idx", columns={"t_ilo_servicedemandeur_sedIdServDem"}), @ORM\Index(name="fk_TM_Ilots_t_ilo_domaineactivite1_idx", columns={"t_ilo_domaineactivite_daIdDomAct"}), @ORM\Index(name="fk_TM_Ilots_t_prodsav1_idx", columns={"t_prodsav_prsIdProdSav"}), @ORM\Index(name="fk_TM_Ilots_t_ilo_entreprise1_idx", columns={"t_ilo_entreprise_enIdEntreprise"}), @ORM\Index(name="fk_TM_Ilots_t_ilo_used1_idx", columns={"t_ilo_used_uIdUsed"}), @ORM\Index(name="fk_TM_Ilots_t_sites1_idx", columns={"t_sites_siIdSite"}), @ORM\Index(name="fk_TM_Ilots_t_ilo_filtrage1_idx", columns={"t_ilo_filtrage_fiIdFiltrage"})})
+ * @ORM\Table(name="TM_Ilots", indexes={@ORM\Index(name="fk_TM_Ilots_t_ilo_bandeau1_idx", columns={"t_ilo_banIdBandeau"}), @ORM\Index(name="fk_TM_Ilots_t_ilo_compétences1_idx", columns={"t_ilo_coIdCompetence"}), @ORM\Index(name="fk_TM_Ilots_t_ilo_typeilot1_idx", columns={"t_ilo_tiIdTypeIlot"}), @ORM\Index(name="fk_TM_Ilots_t_ilo_servicedemandeur1_idx", columns={"t_ilo_sedIdServDem"}), @ORM\Index(name="fk_TM_Ilots_t_ilo_domaineactivite1_idx", columns={"t_ilo_daIdDomAct"}), @ORM\Index(name="fk_TM_Ilots_t_prodsav1_idx", columns={"t_ilo_prsIdProdSav"}), @ORM\Index(name="fk_TM_Ilots_t_ilo_entreprise1_idx", columns={"t_ilo_enIdEntreprise"}), @ORM\Index(name="fk_TM_Ilots_t_ilo_used1_idx", columns={"t_ilo_used"}), @ORM\Index(name="fk_TM_Ilots_t_sites1_idx", columns={"t_sites_siIdSite"}), @ORM\Index(name="fk_TM_Ilots_t_ilo_filtrage1_idx", columns={"t_ilo_fiIdFiltrage"})})
  * @ORM\Entity
  */
 class TmIlots
@@ -50,93 +50,93 @@ class TmIlots
     /**
      * @var integer
      *
-     * @ORM\Column(name="iloDateCreation", type="integer", nullable=true)
+     * @ORM\Column(name="iloDateCreation", type="bigint", nullable=true)
      */
     private $ilodatecreation;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="iloDateModif", type="integer", nullable=true)
+     * @ORM\Column(name="iloDateModif", type="bigint", nullable=true)
      */
     private $ilodatemodif;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="iloDateSuppression", type="integer", nullable=true)
+     * @ORM\Column(name="iloDateSuppression", type="bigint", nullable=true)
      */
     private $ilodatesuppression;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="t_ilo_used_uIdUsed", type="string", length=3, nullable=true)
+     * @ORM\Column(name="t_ilo_used", type="string", length=3, nullable=false)
      */
-    private $tIloUsedUidused;
+    private $tIloUsed;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="t_ilo_servicedemandeur_sedIdServDem", type="string", length=15, nullable=true)
+     * @ORM\Column(name="t_ilo_sedIdServDem", type="string", length=15, nullable=false)
      */
-    private $tIloServicedemandeurSedidservdem;
+    private $tIloSedidservdem;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="t_prodsav_prsIdProdSav", type="string", length=15, nullable=true)
+     * @ORM\Column(name="t_ilo_prsIdProdSav", type="string", length=15, nullable=false)
      */
-    private $tProdsavPrsidprodsav;
+    private $tIloPrsidprodsav;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="t_ilo_domaineactivite_daIdDomAct", type="string", length=25, nullable=true)
+     * @ORM\Column(name="t_ilo_daIdDomAct", type="string", length=25, nullable=false)
      */
-    private $tIloDomaineactiviteDaiddomact;
+    private $tIloDaiddomact;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="t_ilo_competences_coIdCompetence", type="string", length=70, nullable=true)
+     * @ORM\Column(name="t_ilo_coIdCompetence", type="string", length=70, nullable=false)
      */
-    private $tIloCompetencesCoidcompetence;
+    private $tIloCoidcompetence;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="t_sites_siIdSite", type="string", length=10, nullable=true)
+     * @ORM\Column(name="t_sites_siIdSite", type="string", length=10, nullable=false)
      */
     private $tSitesSiidsite;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="t_ilo_entreprise_enIdEntreprise", type="string", length=20, nullable=true)
+     * @ORM\Column(name="t_ilo_enIdEntreprise", type="string", length=20, nullable=false)
      */
-    private $tIloEntrepriseEnidentreprise;
+    private $tIloEnidentreprise;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="t_ilo_filtrage_fiIdFiltrage", type="string", length=20, nullable=true)
+     * @ORM\Column(name="t_ilo_fiIdFiltrage", type="string", length=20, nullable=false)
      */
-    private $tIloFiltrageFiidfiltrage;
+    private $tIloFiidfiltrage;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="t_ilo_typeilot_tiIdTypeIlot", type="string", length=3, nullable=true)
+     * @ORM\Column(name="t_ilo_tiIdTypeIlot", type="string", length=3, nullable=false)
      */
-    private $tIloTypeilotTiidtypeilot;
+    private $tIloTiidtypeilot;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="t_ilo_bandeau_banIdnBandeau", type="string", length=3, nullable=true)
+     * @ORM\Column(name="t_ilo_banIdBandeau", type="string", length=3, nullable=false)
      */
-    private $tIloBandeauBanidnbandeau;
+    private $tIloBanidbandeau;
 
     /**
      * @var string

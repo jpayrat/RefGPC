@@ -2,16 +2,16 @@
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
   <entity name="vae\RefGPCBundle\Entity\TmIlots" table="TM_Ilots">
     <indexes>
-      <index name="fk_TM_Ilots_t_ilo_bandeau1_idx" columns="t_ilo_bandeau_banIdnBandeau"/>
-      <index name="fk_TM_Ilots_t_ilo_competences1_idx" columns="t_ilo_competences_coIdCompetence"/>
-      <index name="fk_TM_Ilots_t_ilo_typeilot1_idx" columns="t_ilo_typeilot_tiIdTypeIlot"/>
-      <index name="fk_TM_Ilots_t_ilo_servicedemandeur1_idx" columns="t_ilo_servicedemandeur_sedIdServDem"/>
-      <index name="fk_TM_Ilots_t_ilo_domaineactivite1_idx" columns="t_ilo_domaineactivite_daIdDomAct"/>
-      <index name="fk_TM_Ilots_t_prodsav1_idx" columns="t_prodsav_prsIdProdSav"/>
-      <index name="fk_TM_Ilots_t_ilo_entreprise1_idx" columns="t_ilo_entreprise_enIdEntreprise"/>
-      <index name="fk_TM_Ilots_t_ilo_used1_idx" columns="t_ilo_used_uIdUsed"/>
+      <index name="fk_TM_Ilots_t_ilo_bandeau1_idx" columns="t_ilo_banIdBandeau"/>
+      <index name="fk_TM_Ilots_t_ilo_compétences1_idx" columns="t_ilo_coIdCompetence"/>
+      <index name="fk_TM_Ilots_t_ilo_typeilot1_idx" columns="t_ilo_tiIdTypeIlot"/>
+      <index name="fk_TM_Ilots_t_ilo_servicedemandeur1_idx" columns="t_ilo_sedIdServDem"/>
+      <index name="fk_TM_Ilots_t_ilo_domaineactivite1_idx" columns="t_ilo_daIdDomAct"/>
+      <index name="fk_TM_Ilots_t_prodsav1_idx" columns="t_ilo_prsIdProdSav"/>
+      <index name="fk_TM_Ilots_t_ilo_entreprise1_idx" columns="t_ilo_enIdEntreprise"/>
+      <index name="fk_TM_Ilots_t_ilo_used1_idx" columns="t_ilo_used"/>
       <index name="fk_TM_Ilots_t_sites1_idx" columns="t_sites_siIdSite"/>
-      <index name="fk_TM_Ilots_t_ilo_filtrage1_idx" columns="t_ilo_filtrage_fiIdFiltrage"/>
+      <index name="fk_TM_Ilots_t_ilo_filtrage1_idx" columns="t_ilo_fiIdFiltrage"/>
     </indexes>
     <id name="ilocodeilot" type="string" column="iloCodeIlot" length="3"/>
     <id name="ilocodebase" type="string" column="IloCodeBase" length="2"/>
@@ -40,67 +40,67 @@
         <option name="fixed"/>
       </options>
     </field>
-    <field name="ilodatecreation" type="integer" column="iloDateCreation" nullable="true">
+    <field name="ilodatecreation" type="bigint" column="iloDateCreation" nullable="true">
       <options>
         <option name="unsigned"/>
       </options>
     </field>
-    <field name="ilodatemodif" type="integer" column="iloDateModif" nullable="true">
+    <field name="ilodatemodif" type="bigint" column="iloDateModif" nullable="true">
       <options>
         <option name="unsigned"/>
       </options>
     </field>
-    <field name="ilodatesuppression" type="integer" column="iloDateSuppression" nullable="true">
+    <field name="ilodatesuppression" type="bigint" column="iloDateSuppression" nullable="true">
       <options>
         <option name="unsigned"/>
       </options>
     </field>
-    <field name="tIloUsedUidused" type="string" column="t_ilo_used_uIdUsed" length="3" nullable="true">
+    <field name="tIloUsed" type="string" column="t_ilo_used" length="3" nullable="false">
       <options>
         <option name="fixed"/>
       </options>
     </field>
-    <field name="tIloServicedemandeurSedidservdem" type="string" column="t_ilo_servicedemandeur_sedIdServDem" length="15" nullable="true">
+    <field name="tIloSedidservdem" type="string" column="t_ilo_sedIdServDem" length="15" nullable="false">
       <options>
         <option name="fixed"/>
       </options>
     </field>
-    <field name="tProdsavPrsidprodsav" type="string" column="t_prodsav_prsIdProdSav" length="15" nullable="true">
+    <field name="tIloPrsidprodsav" type="string" column="t_ilo_prsIdProdSav" length="15" nullable="false">
       <options>
         <option name="fixed"/>
       </options>
     </field>
-    <field name="tIloDomaineactiviteDaiddomact" type="string" column="t_ilo_domaineactivite_daIdDomAct" length="25" nullable="true">
+    <field name="tIloDaiddomact" type="string" column="t_ilo_daIdDomAct" length="25" nullable="false">
       <options>
         <option name="fixed"/>
       </options>
     </field>
-    <field name="tIloCompetencesCoidcompetence" type="string" column="t_ilo_competences_coIdCompetence" length="70" nullable="true">
+    <field name="tIloCoidcompetence" type="string" column="t_ilo_coIdCompetence" length="70" nullable="false">
       <options>
         <option name="fixed"/>
       </options>
     </field>
-    <field name="tSitesSiidsite" type="string" column="t_sites_siIdSite" length="10" nullable="true">
+    <field name="tSitesSiidsite" type="string" column="t_sites_siIdSite" length="10" nullable="false">
       <options>
         <option name="fixed"/>
       </options>
     </field>
-    <field name="tIloEntrepriseEnidentreprise" type="string" column="t_ilo_entreprise_enIdEntreprise" length="20" nullable="true">
+    <field name="tIloEnidentreprise" type="string" column="t_ilo_enIdEntreprise" length="20" nullable="false">
       <options>
         <option name="fixed"/>
       </options>
     </field>
-    <field name="tIloFiltrageFiidfiltrage" type="string" column="t_ilo_filtrage_fiIdFiltrage" length="20" nullable="true">
+    <field name="tIloFiidfiltrage" type="string" column="t_ilo_fiIdFiltrage" length="20" nullable="false">
       <options>
         <option name="fixed"/>
       </options>
     </field>
-    <field name="tIloTypeilotTiidtypeilot" type="string" column="t_ilo_typeilot_tiIdTypeIlot" length="3" nullable="true">
+    <field name="tIloTiidtypeilot" type="string" column="t_ilo_tiIdTypeIlot" length="3" nullable="false">
       <options>
         <option name="fixed"/>
       </options>
     </field>
-    <field name="tIloBandeauBanidnbandeau" type="string" column="t_ilo_bandeau_banIdnBandeau" length="3" nullable="true">
+    <field name="tIloBanidbandeau" type="string" column="t_ilo_banIdBandeau" length="3" nullable="false">
       <options>
         <option name="fixed"/>
       </options>

@@ -15,25 +15,27 @@ class TIloServicedemandeur
     /**
      * @var string
      *
-     * @ORM\Column(name="seLibelleServDom", type="string", length=50, nullable=true)
+     * @ORM\Column(name="sedLibelleServDem", type="string", length=50, nullable=true)
      */
-    private $selibelleservdom;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="sedCodeBase", type="string", length=2, nullable=true)
-     */
-    private $sedcodebase;
+    private $sedlibelleservdem;
 
     /**
      * @var string
      *
      * @ORM\Column(name="sedIdServDem", type="string", length=15)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="NONE")
      */
     private $sedidservdem;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sedCodeBase", type="string", length=2)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $sedcodebase;
 
 
 }

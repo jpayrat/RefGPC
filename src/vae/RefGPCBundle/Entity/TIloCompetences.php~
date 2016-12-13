@@ -22,18 +22,20 @@ class TIloCompetences
     /**
      * @var string
      *
-     * @ORM\Column(name="coCodeBase", type="string", length=2, nullable=true)
+     * @ORM\Column(name="coIdCompetence", type="string", length=70)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
      */
-    private $cocodebase;
+    private $coidcompetence;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="coIdCompetence", type="string", length=70)
+     * @ORM\Column(name="coCodeBase", type="string", length=2)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="NONE")
      */
-    private $coidcompetence;
+    private $cocodebase;
 
 
 }

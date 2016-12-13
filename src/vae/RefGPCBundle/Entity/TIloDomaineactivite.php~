@@ -29,18 +29,20 @@ class TIloDomaineactivite
     /**
      * @var string
      *
-     * @ORM\Column(name="daCodeBase", type="string", length=2, nullable=true)
+     * @ORM\Column(name="daIdDomAct", type="string", length=25)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
      */
-    private $dacodebase;
+    private $daiddomact;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="daIdDomAct", type="string", length=25)
+     * @ORM\Column(name="daCodeBase", type="string", length=2)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="NONE")
      */
-    private $daiddomact;
+    private $dacodebase;
 
 
 }

@@ -31,10 +31,10 @@
         
         
         <br /><br />
-        
+         <div id="box"><a href="#">click</a></div>
         
         <div id="results_ilot">
-            <div id="box"><a href="#">click</a></div>
+           result ilot
         </div>
         
         {#{ dump(newIlot) }#}
@@ -52,46 +52,57 @@
         <script> 
             
 $(document).ready(function () {
-                
+              
+        
+    
+        
+        
+        
+        
+        
                 $("#box").click(function(e){
                 //$("#form_save").submit(function(e){
-                     
-        //alert('plop');
+              
 
     var formURL = "{{ path('vae_refgpc_ilotRecherche') }}";
-    //alert(formURL);
-    var myvar = document.getElementById('form_recherche'); 
-    var formData = new FormData(myvar);
+ //alert(formURL);
+   // var myvar = document.getElementById('form_recherche'); 
+    var myvar = $('form[name=form]').serialize();
+    //var myvar = $("#form").serializeArray();
+ //alert('plop'+myvar);
+    
+    //var formData = new FormData(myvar);
     //alert(JSON.stringify(formData));
     
-    var form = $('#form_recherche');
+    //var form = $('#form_recherche');
     
     //var fd = new FormData(document.getElementById("form_recherche"));
-    alert(form.toSource());
+    //alert(form.toSource());
     
     $.ajax({
-                type: 'GET', // envoi des données en GET ou POST
+      
+                type: 'POST', // envoi des données en GET ou POST
                 url: formURL,
                 // renseignée dans le haut de la page : vues/haut.php
-                data: formData,
+                data: myvar,
+                
                 beforeSend: function () { // traitements JS à faire AVANT l'envoi
-                    //alert('beforeSend php_ilot : ' + php_ilot);
+                    alert('beforeSend php_ilot : ' + formURL + myvar);
 
                     $('#results_ilot').empty();
                     //$('#ajaxLoader').show(); // ajout d'un loader pour signifier l'action
                 },
                 success: function (data) {
                     // traitements JS à faire APRES le retour du fichier .php
-                    //alert('success: '+data);
+                    alert('return controller success: '+data);
                     //$('#ajaxLoader').hide();
                     $('#results_ilot').fadeIn().html(data); // affichage des résultats dans le bloc #results
                 }
+                
+                
+                
             });
-    
-    
-    
-    
-    
+
 });
 
 

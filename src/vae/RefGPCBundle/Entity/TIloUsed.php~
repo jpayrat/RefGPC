@@ -22,5 +22,14 @@ class TIloUsed
     private $uidused;
 
 
-}
 
+    /**
+     * Get uidused
+     *
+     * @return string
+     */
+    public function getUidused()
+    {
+        return $this->uidused;
+    }
+}

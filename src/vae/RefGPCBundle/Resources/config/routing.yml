@@ -17,7 +17,7 @@ vae_refgpc_ilot:
 vae_refgpc_ilotRecherche:
     path: /{base}/ilot/recherche
     defaults:
-       _controller: vaeRefGPCBundle:Ilot:ajaxIlotRecherche 
+       _controller: vaeRefGPCBundle:Ilot:ajaxIlotRecherche
        base: MP
     requirements:
         _method: POST

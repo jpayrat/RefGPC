@@ -35,14 +35,29 @@ class IlotController extends Controller {
     public function ajaxIlotRechercheAction( Request $request )
     {
         if ($request->isXmlHttpRequest()) {
-
-                    
-            return ('sucess');
+        
+            
+            $valselect = $request->request->get('form');
+            
+            // récupération des données formulaire
+          
+          
+            // Génération de la requête SQL
+        
+            // Récupération de la réponse de la requête
+        
+            // Envoi à twig 
+        
+            // Retour à ajax pour remplir le <div> concerné par la requête ajax 
+            
+            return new Response($valselect['TestCompetences']);
+            
         }
         else
         {
-        
-        return ('falsee');
+         echo 'eereur'; exit;
+            // La requête envoyé n'est pas une requête ajax -> Erreur 400
+           return new Response('Erreur : ce n\'est pas une requête ajax !', 400);
         }
     }
     
@@ -68,7 +83,9 @@ class IlotController extends Controller {
         $repositoryCompetence = $repo->getRepository('vaeRefGPCBundle:TIloCompetences');
 
         $qb = $repositoryIlot->createQueryBuilder('T');
-        $qb->select('COUNT(T)');
+        $qb->select('COUNT(T)')
+            ->where('T.ilocodebase = :codebase')
+            ->setParameter('codebase', $codeBase);
 
         $nbIlots = $qb->getQuery()->getSingleScalarResult();
         
@@ -81,17 +98,7 @@ class IlotController extends Controller {
         //$formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $ilot);
         //$form   = $this->get('form.factory')->create(AdvertType::class, $advert);
         
-    if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) 
-    {
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($ilot);
-        $em->flush();
-
-        $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
-
-        //return $this->redirectToRoute('oc_platform_view', array('id' => $advert->getId()));
-    }
-
+   
 
         $ilot = new TmIlots();
         $competence = new TIloCompetences();
@@ -102,83 +109,121 @@ class IlotController extends Controller {
     
     // On ajoute les champs de l'entité que l'on veut à notre formulaire
     $formBuilder
-        ->add('iloCodeIlot',     TextType::class)
-        ->add('tIloEntrepriseEnidentreprise',   TextareaType::class)
-        ->add('tIloUsedUidused',    CheckboxType::class)
-        ->add('ilolibelleilot', RadioType::class)
-        ->add('iloCodeIlot', ChoiceType::class, [
-    'choices' => 
-        $ilot = $repositoryIlot->findBy(array('ilocodebase' => $codeBase)),
-
-    'choice_label' => function($ilot) {
-        return strtoupper($ilot->getIlolibelleilot());
-     
-    },
-    'choice_attr' => function($ilot) {
-        return ['class' => 'ilot_'.strtolower($ilot->getIlocodeilot())];
-
-    }])  
+    ->add('RechercheGlobale', TextType::class, array(
+        'label' => 'Recherche Globale',
+    ))
+    ->add('IlotText', TextType::class, array(
+        'attr'=> array('maxlength' => 3, 'size' => 3),
         
-        ->add('coIdCompetence', ChoiceType::class, [
-    'choices' => 
-        $competence = $repositoryCompetence->findBy(array('cocodebase' => $codeBase)), 
-    
-    'choice_label' => function($competence) {
-        return strtoupper($competence->getCoidcompetence());  
-    },
-            
-    'choice_attr' => function($competence) {
-        return ['class' => 'competence_'.strtolower($competence->getCoidcompetence())];
-    }]) 
-    
-    ->add('TestCompetences', EntityType::class, array(
-        'class'=>'vaeRefGPCBundle:TIloCompetences',  
-        'placeholder' => 'test',
-        'query_builder'=> function (EntityRepository $er) use ($codeBase)
+    ))
+    ->add('IlotList', EntityType::class, array(
+        'class'=>'vaeRefGPCBundle:TmIlots',  
+        'placeholder'=> 'Tous',
+        'query_builder'=> function ($TmIlots) use ($codeBase)
     {
-         return $er->createQueryBuilder('a')
+         return $TmIlots->createQueryBuilder('a')
+            ->where('a.ilocodebase = :codebase')
+            ->setParameter('codebase', $codeBase);
+    },
+        'choice_label'=>function ($TmIlots) {
+            return $TmIlots->getFormCodeIlotETLibelle();
+        },
+        'choice_value' => 'iloCodeIlot',
+    )) 
+     ->add('TypeIlot', EntityType::class, array(
+        'class'=>'vaeRefGPCBundle:TIloTypeilot',  
+        'placeholder'=> 'Tous',
+        'choice_label'=> 'tiidtypeilot',
+        'choice_value' => 'tiidtypeilot',
+    ))
+     ->add('Used', EntityType::class, array(
+        'class'=>'vaeRefGPCBundle:TIloUsed',  
+        'placeholder'=> 'Tous',
+        'choice_label'=> 'uidused',
+        'choice_value' => 'uidused',
+    ))    
+    ->add('Competences', EntityType::class, array(
+        'class'=>'vaeRefGPCBundle:TIloCompetences',  
+        'placeholder'=> 'Tous',
+        'query_builder'=> function ($TIloCompetences) use ($codeBase)
+    {
+         return $TIloCompetences->createQueryBuilder('a')
             ->where('a.cocodebase = :codebase')
             ->setParameter('codebase', $codeBase);
     },
         'choice_label'=>'coIdCompetence',
         'choice_value' => 'coIdCompetence',
-        'data' => $repo->getReference("vaeRefGPCBundle:TIloCompetences", 3),
-        'required'    => false,
-    
-    
-    
-    
-            
-    
-   
-            /*'choice_label'=>'Choix de categorie parent',*/
+    ))     
+    ->add('ServiceDem', EntityType::class, array(
+        'class'=>'vaeRefGPCBundle:TIloServicedemandeur',  
+        'placeholder'=> 'Tous',
+        'query_builder'=> function ($TIloServicedemandeur) use ($codeBase)
+    {
+         return $TIloServicedemandeur->createQueryBuilder('a')
+            ->where('a.sedcodebase = :codebase')
+            ->setParameter('codebase', $codeBase);
+    },
+        'choice_label'=>'sedidservdem',
+        'choice_value' => 'sedidservdem',
+    ))         
+    ->add('Entreprise', EntityType::class, array(
+        'class'=>'vaeRefGPCBundle:TIloEntreprise',  
+        'placeholder'=> 'Tous',
+        'query_builder'=> function ($TIloEntreprise) use ($codeBase)
+    {
+         return $TIloEntreprise->createQueryBuilder('a')
+            ->where('a.encodebase = :codebase')
+            ->setParameter('codebase', $codeBase);
+    },
+        'choice_label'=>function ($TIloEntreprise) {
+            return $TIloEntreprise->getFormLibelleEntrepriseETId();
+        },
+        'choice_value' => 'enidentreprise',
     ))
-    
-    /*
-     * 'query_builder' => function(CandidateCampaignRepository $er) use ($id)
-                {
-                        return $er->createQueryBuilder('a')
-                                        ->where('a.candidate = :id')
-                                        ->setParameter('id', $id);
-                },
-                        ))
-     * 
-     * 
-     * 
-        ->add('coIdCompetence', EntityType::class, array(
-
-        'class'        => 'vaeRefGPCBundle:Entity:TIloCompetences',
-
-        'choice_label' => 'coIdCompetences',
-
-        'multiple'     => false,
-
-  ))*/
-    
-    
-    
+    //Site Géographique ...            
+    ->add('SiteGeo', EntityType::class, array(
+        'class'=>'vaeRefGPCBundle:TSites',  
+        'placeholder'=> 'Tous',
+        'query_builder'=> function ($TSites) use ($codeBase)
+    {
+         return $TSites->createQueryBuilder('a')
+            ->where('a.sicodebase = :codebase')
+            ->setParameter('codebase', $codeBase);
+    },
+        'choice_label'=> 'silibellesite',
+        'choice_value' => 'siidsite',
+    ))                 
+    ->add('DomaineAct', EntityType::class, array(
+        'class'=>'vaeRefGPCBundle:TIloDomaineactivite',  
+        'placeholder'=> 'Tous',
+        'query_builder'=> function ($TIloDomaineactivite) use ($codeBase)
+    {
+         return $TIloDomaineactivite->createQueryBuilder('a')
+            ->where('a.dacodebase = :codebase')
+            ->setParameter('codebase', $codeBase);
+    },
+        'choice_label'=>function ($TIloDomaineactivite) {
+            return $TIloDomaineactivite->getFormLibelleDomActETId();
+        },
+        'choice_value' => 'daiddomact',
+    ))    
      
-        ->add('save',      SubmitType::class)
+    // Bouton radio pour Optim / oui-non-les deux
+    ->add('Optima', ChoiceType::class, array(
+    'label'    => 'Optim ?',
+    'choices' => array(
+        'Oui' => 1,
+        'non' => 0,
+        'Les deux' => null),
+    'required' => false, 
+    'placeholder' => false,
+    'expanded' => true,
+    'multiple' => false,
+    ))            
+                 
+                
+            
+        /*->add('save',      SubmitType::class)*/
     ;
 
     // Pour l'instant, pas de candidatures, catégories, etc., on les gérera plus tard
@@ -193,6 +238,8 @@ $testselect = $testform->buildForm($formBuilder, $option);
 
  $form = $formBuilder->getForm();
 
+ 
+ 
 
     // On passe la méthode createView() du formulaire à la vue
     // afin qu'elle puisse afficher le formulaire toute seule

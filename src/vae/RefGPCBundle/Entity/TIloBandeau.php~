@@ -22,11 +22,11 @@ class TIloBandeau
     /**
      * @var string
      *
-     * @ORM\Column(name="banIdnBandeau", type="string", length=3)
+     * @ORM\Column(name="banIdBandeau", type="string", length=3)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $banidnbandeau;
+    private $banidbandeau;
 
 
 }

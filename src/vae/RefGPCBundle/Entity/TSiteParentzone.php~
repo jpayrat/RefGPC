@@ -15,18 +15,20 @@ class TSiteParentzone
     /**
      * @var string
      *
-     * @ORM\Column(name="siIdSite_t_sites", type="string", length=10, nullable=true)
+     * @ORM\Column(name="siIdSite", type="string", length=10)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
      */
-    private $siidsiteTSites;
+    private $siidsite;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="siIdSite", type="string", length=10)
+     * @ORM\Column(name="siIdSite_t_sites", type="string", length=10)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="NONE")
      */
-    private $siidsite;
+    private $siidsiteTSites;
 
 
 }

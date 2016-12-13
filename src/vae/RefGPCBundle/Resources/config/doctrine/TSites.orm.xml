@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
   <entity name="vae\RefGPCBundle\Entity\TSites" table="t_sites">
-    <id name="siidsite" type="string" column="siIdSite" length="10">
-      <generator strategy="IDENTITY"/>
-    </id>
+    <id name="siidsite" type="string" column="siIdSite" length="10"/>
+    <id name="sicodebase" type="string" column="siCodeBase" length="2"/>
     <field name="silibellesite" type="string" column="siLibelleSite" length="100" nullable="true">
-      <options>
-        <option name="fixed"/>
-      </options>
-    </field>
-    <field name="sicodebase" type="string" column="siCodeBase" length="2" nullable="true">
       <options>
         <option name="fixed"/>
       </options>

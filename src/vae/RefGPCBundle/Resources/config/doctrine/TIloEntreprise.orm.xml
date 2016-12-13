@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
   <entity name="vae\RefGPCBundle\Entity\TIloEntreprise" table="t_ilo_entreprise">
-    <id name="enidentreprise" type="string" column="enIdEntreprise" length="20">
-      <generator strategy="IDENTITY"/>
-    </id>
+    <id name="enidentreprise" type="string" column="enIdEntreprise" length="20"/>
+    <id name="encodebase" type="string" column="enCodeBase" length="2"/>
     <field name="enlibelleentreprise" type="string" column="enLibelleEntreprise" length="50" nullable="true">
       <options>
         <option name="fixed"/>
       </options>
     </field>
     <field name="enzoneetrentreprise" type="string" column="enZoneETREntreprise" length="2" nullable="true">
-      <options>
-        <option name="fixed"/>
-      </options>
-    </field>
-    <field name="encodebase" type="string" column="enCodeBase" length="2" nullable="true">
       <options>
         <option name="fixed"/>
       </options>
