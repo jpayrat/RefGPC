@@ -32,37 +32,60 @@ use Doctrine\ORM\EntityRepository;
 class IlotController extends Controller {
     //put your code here
 
-    public function ajaxIlotRechercheAction( Request $request )
+    public function ajaxIlotSearchAction($base, Request $request )
     {
         if ($request->isXmlHttpRequest()) {
         
-            
-            $valselect = $request->request->get('form');
-            
-            
-            // récupération des données formulaire
+            $categorie = 'ilot';  
             $repo = $this->getDoctrine()->getManager();
+            
+            $infoBases = new InfosBase($repo, $base, $categorie);
+                $libelleBase = $infoBases->getLibelleBase();
+                $codeBase = $infoBases->getCodeBase();
+                
+            // récupération des données formulaire
+            $valselect = $request->request->get('form');
+  
             $repositoryIlot = $repo->getRepository('vaeRefGPCBundle:TmIlots');
  
             $qb = $repositoryIlot->createQueryBuilder('u');
-            $qb->where('u.tIloCoidcompetence = :competence')
-               ->setParameter('competence', $valselect['Competences'])
-               ->andwhere('u.ilocodebase = :codebase')
-                ->setParameter('codebase', 'T1');
-           // if valselect
-             //   $qd ->
+            $qb->where('u.ilocodebase = :codebase')
+                ->setParameter('codebase', $codeBase);
             
-            $globalIlots = $qb->getQuery()->getResult();
- 
-            $test = $globalIlots[0]->getIlocodeilot();
-            
-            foreach ($globalIlots as $globalIlot) {
-                
-                echo $globalIlot->getIlocodeilot().' // '.$globalIlot->getTIloCoidcompetence()->getCoidcompetence().'<br/>';
-                
+            if($valselect['IlotList'] != '')
+            {
+               $qb->andwhere('u.ilocodeilot = :ilot')
+                  ->setParameter('ilot', $valselect['IlotList']);
             }
             
-            exit();
+                
+               
+            if($valselect['Competences'] != '')
+            {
+                $qb->andwhere('u.tIloCoidcompetence = :competence')
+                ->setParameter('competence', $valselect['Competences']);
+            }
+            /* */
+               
+            $allIlots = $qb->getQuery()->getResult();
+            $nbIlots = count($allIlots);
+ 
+            return $this->render('vaeRefGPCBundle:Ilot:IlotSearch.html.twig', array(
+                'allIlots' => $allIlots,
+                'nbIlots' => $nbIlots
+            ));
+            
+//            $globalIlots = $qb->getQuery()->getResult();
+// 
+//            $test = $globalIlots[0]->getIlocodeilot();
+//            
+//            foreach ($globalIlots as $globalIlot) {
+//                
+//                echo $globalIlot->getIlocodeilot().' // '.$globalIlot->getTIloCoidcompetence()->getCoidcompetence().'<br/>';
+//                
+//            }
+//            
+//            exit();
             
             // Génération de la requête SQL
         
@@ -72,7 +95,7 @@ class IlotController extends Controller {
         
             // Retour à ajax pour remplir le <div> concerné par la requête ajax 
             
-            return new Response($valselect['Competences']);
+           
             
         }
         else
@@ -82,7 +105,33 @@ class IlotController extends Controller {
            return new Response('Erreur : ce n\'est pas une requête ajax !', 400);
         }
     }
-    
+    public function ajaxIlotSearchAllAction($base, Request $request )
+    {
+        if ($request->isXmlHttpRequest()) {
+
+            $categorie = 'ilot';  
+            $repo = $this->getDoctrine()->getManager();
+            
+            $infoBases = new InfosBase($repo, $base, $categorie);
+                $libelleBase = $infoBases->getLibelleBase();
+                $codeBase = $infoBases->getCodeBase();
+            
+            // Récupération de tous les îlots
+            $repositoryIlot = $repo->getRepository('vaeRefGPCBundle:TmIlots');
+            $allIlots = $repositoryIlot->findByIlocodebase($codeBase);
+            $nbIlots = count($allIlots);
+            
+            return $this->render('vaeRefGPCBundle:Ilot:IlotSearch.html.twig', array(
+                'allIlots' => $allIlots,
+                'nbIlots' => $nbIlots
+            ));
+        }
+        else
+        {
+            // La requête envoyé n'est pas une requête ajax -> Erreur 400
+            return new Response('Erreur : ce n\'est pas une requête ajax !', 400);
+        }
+    }
     
     
     public function indexAction($base, Request $request)

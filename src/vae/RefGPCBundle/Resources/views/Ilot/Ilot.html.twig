@@ -26,6 +26,9 @@
         
         <br /><br />
         
+        <span id="reinitForm">Réinitialiser le formulaire</span><br />
+        <span id="listAll">Lister tous les îlots</span><br />
+        
         {{ form(form)}}
         
         
@@ -58,58 +61,63 @@
         <script> 
             
 $(document).ready(function () {
-              
+       
+    var varForm;    
+    var formURL;
         
+    $('#reinitForm').on('click', function () {
+        $('form[name=form]')[0].reset();
+        $('#results_ilot').empty();
+        //recup_form_ilot();
+        //requete_formulaire('reinit');
+    });
     
-        
-        
-        
-        
-        
-                $("#box").click(function(e){
-                //$("#form_save").submit(function(e){
-              
-
-    var formURL = "{{ path('vae_refgpc_ilotRecherche') }}";
- //alert(formURL);
-   // var myvar = document.getElementById('form_recherche'); 
-    var myvar = $('form[name=form]').serialize();
-    //var myvar = $("#form").serializeArray();
- //alert('plop'+myvar);
+    $('#listAll').on('click', function () {
+        formURL = "{{ path('vae_refgpc_ilotSearchAll') }}";
+        ajaxForm(formURL, '');
+    });
     
-    //var formData = new FormData(myvar);
-    //alert(JSON.stringify(formData));
+    $('#form_IlotList').on('change', function () {
+        $('#form_IlotText').val(''); // réinit de l'autre choix de l'îlot (ilot tapé)
+        recupFormIlot();
+        formURL = "{{ path('vae_refgpc_ilotSearch') }}";
+        ajaxForm(formURL, varForm);
+    });    
     
-    //var form = $('#form_recherche');
-    
-    //var fd = new FormData(document.getElementById("form_recherche"));
-    //alert(form.toSource());
-    
-    $.ajax({
-      
-                type: 'POST', // envoi des données en GET ou POST
-                url: formURL,
-                // renseignée dans le haut de la page : vues/haut.php
-                data: myvar,
+    $('#form_Competences').on('change', function () {
+        recupFormIlot();
+        formURL = "{{ path('vae_refgpc_ilotSearch') }}";
+        ajaxForm(formURL, varForm);
+    });      
+        
+        
+        
+    function recupFormIlot() {
+        varForm = $('form[name=form]').serialize();
+    }   
+        
+    function ajaxForm(formURL, varForm) {
+  
+        $.ajax({
+            type: 'POST', // envoi des données en GET ou POST
+            url: formURL,
+            // renseignée dans le haut de la page : vues/haut.php
+            data: varForm,
                 
-                beforeSend: function () { // traitements JS à faire AVANT l'envoi
-                    alert('beforeSend php_ilot : ' + formURL + myvar);
-
-                    $('#results_ilot').empty();
-                    //$('#ajaxLoader').show(); // ajout d'un loader pour signifier l'action
-                },
-                success: function (data) {
-                    // traitements JS à faire APRES le retour du fichier .php
-                    alert('return controller success: '+data);
-                    //$('#ajaxLoader').hide();
-                    $('#results_ilot').fadeIn().html(data); // affichage des résultats dans le bloc #results
-                }
+            beforeSend: function () { // traitements JS à faire AVANT l'envoi
+                //alert('beforeSend php_ilot : ' + formURL + myvar);
                 
-                
-                
-            });
-
-});
+                $('#results_ilot').empty();
+                //$('#ajaxLoader').show(); // ajout d'un loader pour signifier l'action
+            },
+            success: function (data) {
+                // traitements JS à faire APRES le retour du fichier .php
+                //alert('return controller success: '+data);
+                //$('#ajaxLoader').hide();
+            $('#results_ilot').fadeIn().html(data); // affichage des résultats dans le bloc #results
+            }
+        });
+    }
 
 
 });
