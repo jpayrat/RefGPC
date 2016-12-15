@@ -15,6 +15,13 @@ class TIloServicedemandeur
     /**
      * @var string
      *
+     * @ORM\Column(name="sedIdServDem", type="string", length=15, nullable=false)
+     */
+    private $sedidservdem;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="sedLibelleServDem", type="string", length=50, nullable=true)
      */
     private $sedlibelleservdem;
@@ -22,20 +29,18 @@ class TIloServicedemandeur
     /**
      * @var string
      *
-     * @ORM\Column(name="sedIdServDem", type="string", length=15)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     */
-    private $sedidservdem;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="sedCodeBase", type="string", length=2)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\Column(name="sedCodeBase", type="string", length=2, nullable=false)
      */
     private $sedcodebase;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="sedId", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $sedid;
 
 
 }

@@ -5,7 +5,7 @@ namespace vae\RefGPCBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use vae\RefGPCBundle\usrClass\InfosBase;
 use vae\RefGPCBundle\Entity\TmIlots;
-use vae\RefGPCBundle\Entity\TIloCompetences;
+//use vae\RefGPCBundle\Entity\TIloCompetences;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -39,9 +39,31 @@ class IlotController extends Controller {
             
             $valselect = $request->request->get('form');
             
+            
             // récupération des données formulaire
-          
-          
+            $repo = $this->getDoctrine()->getManager();
+            $repositoryIlot = $repo->getRepository('vaeRefGPCBundle:TmIlots');
+ 
+            $qb = $repositoryIlot->createQueryBuilder('u');
+            $qb->where('u.tIloCoidcompetence = :competence')
+               ->setParameter('competence', $valselect['Competences'])
+               ->andwhere('u.ilocodebase = :codebase')
+                ->setParameter('codebase', 'T1');
+           // if valselect
+             //   $qd ->
+            
+            $globalIlots = $qb->getQuery()->getResult();
+ 
+            $test = $globalIlots[0]->getIlocodeilot();
+            
+            foreach ($globalIlots as $globalIlot) {
+                
+                echo $globalIlot->getIlocodeilot().' // '.$globalIlot->getTIloCoidcompetence()->getCoidcompetence().'<br/>';
+                
+            }
+            
+            exit();
+            
             // Génération de la requête SQL
         
             // Récupération de la réponse de la requête
@@ -50,7 +72,7 @@ class IlotController extends Controller {
         
             // Retour à ajax pour remplir le <div> concerné par la requête ajax 
             
-            return new Response($valselect['TestCompetences']);
+            return new Response($valselect['Competences']);
             
         }
         else
@@ -80,7 +102,7 @@ class IlotController extends Controller {
          
         // Récupération du nombre d'îlot
         $repositoryIlot = $repo->getRepository('vaeRefGPCBundle:TmIlots');
-        $repositoryCompetence = $repo->getRepository('vaeRefGPCBundle:TIloCompetences');
+       // $repositoryCompetence = $repo->getRepository('vaeRefGPCBundle:TIloCompetences');
 
         $qb = $repositoryIlot->createQueryBuilder('T');
         $qb->select('COUNT(T)')
@@ -101,11 +123,17 @@ class IlotController extends Controller {
    
 
         $ilot = new TmIlots();
-        $competence = new TIloCompetences();
+        //$competence = new TIloCompetences();
         
     $formBuilder = $this->get('form.factory')->createBuilder();
     
     
+    /////////
+    // UPDATE TM_Ilots INNER JOIN t_ilo_bandeau ON TM_Ilots.t_ilo_banIdBandeau 
+    // = t_ilo_bandeau.banIdBandeau SET TM_Ilots.t_ilo_banIdBandeau = t_ilo_bandeau.banId 
+    /////////
+    
+    //UPDATE TM_Ilots INNER JOIN t_ilo_competences ON TM_Ilots.`t_ilo_coIdCompetence` = t_ilo_competences.coIdCompetence SET TM_Ilots.`t_ilo_coIdCompetence` = t_ilo_competences.coIdCompetence
     
     // On ajoute les champs de l'entité que l'on veut à notre formulaire
     $formBuilder
@@ -152,7 +180,7 @@ class IlotController extends Controller {
             ->setParameter('codebase', $codeBase);
     },
         'choice_label'=>'coIdCompetence',
-        'choice_value' => 'coIdCompetence',
+        'choice_value' => 'coId',
     ))     
     ->add('ServiceDem', EntityType::class, array(
         'class'=>'vaeRefGPCBundle:TIloServicedemandeur',  
@@ -164,8 +192,8 @@ class IlotController extends Controller {
             ->setParameter('codebase', $codeBase);
     },
         'choice_label'=>'sedidservdem',
-        'choice_value' => 'sedidservdem',
-    ))         
+        'choice_value' => 'sedid',
+    ))   
     ->add('Entreprise', EntityType::class, array(
         'class'=>'vaeRefGPCBundle:TIloEntreprise',  
         'placeholder'=> 'Tous',
@@ -178,7 +206,7 @@ class IlotController extends Controller {
         'choice_label'=>function ($TIloEntreprise) {
             return $TIloEntreprise->getFormLibelleEntrepriseETId();
         },
-        'choice_value' => 'enidentreprise',
+        'choice_value' => 'enid',
     ))
     //Site Géographique ...            
     ->add('SiteGeo', EntityType::class, array(
@@ -191,7 +219,7 @@ class IlotController extends Controller {
             ->setParameter('codebase', $codeBase);
     },
         'choice_label'=> 'silibellesite',
-        'choice_value' => 'siidsite',
+        'choice_value' => 'siid',
     ))                 
     ->add('DomaineAct', EntityType::class, array(
         'class'=>'vaeRefGPCBundle:TIloDomaineactivite',  
@@ -205,7 +233,7 @@ class IlotController extends Controller {
         'choice_label'=>function ($TIloDomaineactivite) {
             return $TIloDomaineactivite->getFormLibelleDomActETId();
         },
-        'choice_value' => 'daiddomact',
+        'choice_value' => 'daid',
     ))    
      
     // Bouton radio pour Optim / oui-non-les deux
@@ -225,6 +253,7 @@ class IlotController extends Controller {
             
         /*->add('save',      SubmitType::class)*/
     ;
+        
 
     // Pour l'instant, pas de candidatures, catégories, etc., on les gérera plus tard
     // À partir du formBuilder, on génère le formulaire
@@ -240,6 +269,33 @@ $testselect = $testform->buildForm($formBuilder, $option);
 
  
  
+// Récupération de tous les îlots
+//$allIlots = $repositoryIlot->findAll();
+ 
+ 
+// Récupération des îlots avec des critères de recherche fait à la main
+// $allIlots = $repositoryIlot->findBy(
+//  array('ilocodebase' => 'T1', 'tIloCoidcompetence' => '14'), // Critere
+//  array('ilocodeilot' => 'DESC'),        // Tri
+//  10,                              // Limite
+//  0                               // Offset
+//);
+ 
+ 
+ // Récupération de la recherche globale avec le LIKE
+//    $qb = $repositoryIlot->createQueryBuilder('u');
+//   
+//     $qb->where('u.ilocodeilot LIKE :search')
+//        ->setParameter('search', '%RL%');
+//    
+//    $globalIlots = $qb->getQuery()
+//                     ->getResult();
+// 
+        $valselect['Competences'] = '14';
+ 
+ 
+            
+            
 
     // On passe la méthode createView() du formulaire à la vue
     // afin qu'elle puisse afficher le formulaire toute seule
@@ -252,8 +308,8 @@ $testselect = $testform->buildForm($formBuilder, $option);
         'codeBase' => $codeBase,
         'base' => $base,
         'form' => $form->createView(),
-        'newIlot' => $ilot
-        
+        'newIlot' => $ilot,
+        //'allIlots' => $globalIlots,
         ));
         
         

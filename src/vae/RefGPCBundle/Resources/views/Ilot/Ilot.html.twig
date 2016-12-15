@@ -38,16 +38,22 @@
         </div>
         
         {#{ dump(newIlot) }#}
-        <script>
         
-        myvar = 'plop2';
-        //alert(myvar);
-    
-            
-    
-        </script>
+        <ul>
+
+            {#{ dump(allIlots) }#}
+            {#% for ilot in allIlots %}
+
+            <li>{{ ilot.getIloCodeIlot }} - {{ ilot.getTIloCoidcompetence.getCoIdCompetence }}</li>
+
+            {% endfor %#}
+
+            </ul>
         
         
+        
+        
+      
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script> 
         <script> 
             
