@@ -52,20 +52,81 @@ class IlotController extends Controller {
             $qb->where('u.ilocodebase = :codebase')
                 ->setParameter('codebase', $codeBase);
             
+            if($valselect['RechercheGlobale'] != '')
+            {
+                $qb->leftJoin('u.tSitesSiidsite', 'v' );
+                $qb->leftJoin('u.tIloTiidtypeilot', 'w' );
+                $qb->leftJoin('u.tIloCoidcompetence', 'x' );
+                $qb->leftJoin('u.tIloUsed', 'y' );
+                $qb->leftJoin('u.tIloSedidservdem', 'z' );
+                $qb->leftJoin('u.tIloEnidentreprise', 'a' );
+                $qb->leftJoin('u.tIloDaiddomact', 'b' );
+                
+                $qb->andwhere('u.ilocodeilot LIKE :globale'
+                        . ' OR  w.tiidtypeilot LIKE :globale'
+                        . ' OR  w.tilibelletypeilot LIKE :globale'
+                        . ' OR  x.coidcompetence LIKE :globale'
+                        . ' OR  y.uidused LIKE :globale'
+                        . ' OR  z.sedidservdem LIKE :globale'
+                        . ' OR  z.sedlibelleservdem LIKE :globale'
+                        . ' OR  a.enidentreprise LIKE :globale'
+                        . ' OR  a.enlibelleentreprise LIKE :globale'
+                        . ' OR  b.daiddomact LIKE :globale'
+                        . ' OR  b.dalibelledomact LIKE :globale'                        
+                        . ' OR  v.silibellesite LIKE :globale'
+                        . ' OR  u.ilolibelleilot LIKE :globale')
+                  ->setParameter('globale', '%'.$valselect['RechercheGlobale'].'%');
+            }
+            if($valselect['IlotText'] != '')
+            {
+               $qb->andwhere('u.ilocodeilot LIKE :ilottext')
+                  ->setParameter('ilottext', '%'.$valselect['IlotText'].'%');
+            }
             if($valselect['IlotList'] != '')
             {
                $qb->andwhere('u.ilocodeilot = :ilot')
                   ->setParameter('ilot', $valselect['IlotList']);
             }
-            
-                
-               
+            if($valselect['TypeIlot'] != '')
+            {
+               $qb->andwhere('u.tIloTiidtypeilot = :typeilot')
+                  ->setParameter('typeilot', $valselect['TypeIlot']);
+            }
+            if($valselect['Used'] != '')
+            {
+               $qb->andwhere('u.tIloUsed = :use')
+                  ->setParameter('use', $valselect['Used']);
+            } 
             if($valselect['Competences'] != '')
             {
                 $qb->andwhere('u.tIloCoidcompetence = :competence')
                 ->setParameter('competence', $valselect['Competences']);
             }
-            /* */
+            if($valselect['ServiceDem'] != '')
+            {
+                $qb->andwhere('u.tIloSedidservdem = :servdem')
+                ->setParameter('servdem', $valselect['ServiceDem']);
+            }
+            if($valselect['Entreprise'] != '')
+            {
+                $qb->andwhere('u.tIloEnidentreprise = :entreprise')
+                ->setParameter('entreprise', $valselect['Entreprise']);
+            }
+            if($valselect['DomaineAct'] != '')
+            {
+                $qb->andwhere('u.tIloDaiddomact = :domact')
+                ->setParameter('domact', $valselect['DomaineAct']);
+            }
+            if($valselect['Optim'] != '2') // Null val par defaut, et 2 quand "les deux" est coché
+            {
+                $qb->andwhere('u.ilooptim = :optim')
+                ->setParameter('optim', $valselect['Optim']);
+            }
+            if($valselect['SiteGeo'] != '')
+            {
+                $qb->andwhere('u.tSitesSiidsite = :site')
+                ->setParameter('site', $valselect['SiteGeo']);
+            }
                
             $allIlots = $qb->getQuery()->getResult();
             $nbIlots = count($allIlots);
@@ -286,12 +347,12 @@ class IlotController extends Controller {
     ))    
      
     // Bouton radio pour Optim / oui-non-les deux
-    ->add('Optima', ChoiceType::class, array(
+    ->add('Optim', ChoiceType::class, array(
     'label'    => 'Optim ?',
     'choices' => array(
-        'Oui' => 1,
-        'non' => 0,
-        'Les deux' => null),
+        'Oui' => '1',
+        'non' => '0',
+        'Les deux' => '2'),
     'required' => false, 
     'placeholder' => false,
     'expanded' => true,

@@ -72,28 +72,84 @@ $(document).ready(function () {
         //requete_formulaire('reinit');
     });
     
+    
+    
     $('#listAll').on('click', function () {
-        formURL = "{{ path('vae_refgpc_ilotSearchAll') }}";
+        formURL = "{{ path('vae_refgpc_ilotSearch') }}";
         ajaxForm(formURL, '');
+    });
+    
+    $('#form_RechercheGlobale').on('keyup', function () {
+        varForm = recupFormIlot();
+        formURL = "{{ path('vae_refgpc_ilotSearch') }}";
+        ajaxForm(formURL, varForm);
+    });
+    
+    $('#form_IlotText').on('keyup', function () {
+        $('#form_IlotList').prop('selectedIndex',0);
+        varForm = recupFormIlot();
+        formURL = "{{ path('vae_refgpc_ilotSearch') }}";
+        ajaxForm(formURL, varForm);
     });
     
     $('#form_IlotList').on('change', function () {
         $('#form_IlotText').val(''); // réinit de l'autre choix de l'îlot (ilot tapé)
-        recupFormIlot();
+        varForm = recupFormIlot();
         formURL = "{{ path('vae_refgpc_ilotSearch') }}";
         ajaxForm(formURL, varForm);
     });    
-    
-    $('#form_Competences').on('change', function () {
-        recupFormIlot();
+  
+    $('#form_TypeIlot').on('change', function () {
+        varForm = recupFormIlot();
         formURL = "{{ path('vae_refgpc_ilotSearch') }}";
         ajaxForm(formURL, varForm);
-    });      
-        
-        
-        
+    }); 
+    
+    $('#form_Used').on('change', function () {
+        varForm = recupFormIlot();
+        formURL = "{{ path('vae_refgpc_ilotSearch') }}";
+        ajaxForm(formURL, varForm);
+    });
+    
+    $('#form_Competences').on('change', function () {
+        varForm = recupFormIlot();
+        formURL = "{{ path('vae_refgpc_ilotSearch') }}";
+        ajaxForm(formURL, varForm);
+    });     
+     
+    $('#form_ServiceDem').on('change', function () {
+        varForm = recupFormIlot();
+        formURL = "{{ path('vae_refgpc_ilotSearch') }}";
+        ajaxForm(formURL, varForm);
+    }); 
+    
+    $('#form_Entreprise').on('change', function () {
+        varForm = recupFormIlot();
+        formURL = "{{ path('vae_refgpc_ilotSearch') }}";
+        ajaxForm(formURL, varForm);
+    }); 
+    
+    $('#form_DomaineAct').on('change', function () {
+        varForm = recupFormIlot();
+        formURL = "{{ path('vae_refgpc_ilotSearch') }}";
+        ajaxForm(formURL, varForm);
+    }); 
+    
+    $('input:radio[name="form[Optim]"]').change(function () {
+        varForm = recupFormIlot();
+        formURL = "{{ path('vae_refgpc_ilotSearch') }}";
+        ajaxForm(formURL, varForm);
+    }); 
+    
+    $('#form_SiteGeo').on('change', function () {
+        varForm = recupFormIlot();
+        formURL = "{{ path('vae_refgpc_ilotSearch') }}";
+        ajaxForm(formURL, varForm);
+    }); 
+    
     function recupFormIlot() {
-        varForm = $('form[name=form]').serialize();
+        var recupForm = $('form[name=form]').serialize();
+        return recupForm;
     }   
         
     function ajaxForm(formURL, varForm) {
@@ -105,7 +161,7 @@ $(document).ready(function () {
             data: varForm,
                 
             beforeSend: function () { // traitements JS à faire AVANT l'envoi
-                //alert('beforeSend php_ilot : ' + formURL + myvar);
+                //alert('beforeSend php_ilot : ' + formURL + varForm);
                 
                 $('#results_ilot').empty();
                 //$('#ajaxLoader').show(); // ajout d'un loader pour signifier l'action
