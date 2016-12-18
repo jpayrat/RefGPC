@@ -66,7 +66,7 @@ $(document).ready(function () {
     var formURL;
         
     $('#reinitForm').on('click', function () {
-        $('form[name=form]')[0].reset();
+        $('form[name=search_ilot_form]')[0].reset();
         $('#results_ilot').empty();
         //recup_form_ilot();
         //requete_formulaire('reinit');
@@ -79,76 +79,76 @@ $(document).ready(function () {
         ajaxForm(formURL, '');
     });
     
-    $('#form_RechercheGlobale').on('keyup', function () {
+    $('#search_ilot_form_RechercheGlobale').on('keyup', function () {
         varForm = recupFormIlot();
         formURL = "{{ path('vae_refgpc_ilotSearch') }}";
         ajaxForm(formURL, varForm);
     });
     
-    $('#form_IlotText').on('keyup', function () {
-        $('#form_IlotList').prop('selectedIndex',0);
+    $('#search_ilot_form_IlotText').on('keyup', function () {
+        $('#search_ilot_form_IlotList').prop('selectedIndex',0);
         varForm = recupFormIlot();
         formURL = "{{ path('vae_refgpc_ilotSearch') }}";
         ajaxForm(formURL, varForm);
     });
     
-    $('#form_IlotList').on('change', function () {
-        $('#form_IlotText').val(''); // réinit de l'autre choix de l'îlot (ilot tapé)
+    $('#search_ilot_form_IlotList').on('change', function () {
+        $('#search_ilot_form_IlotText').val(''); // réinit de l'autre choix de l'îlot (ilot tapé)
         varForm = recupFormIlot();
         formURL = "{{ path('vae_refgpc_ilotSearch') }}";
         ajaxForm(formURL, varForm);
     });    
   
-    $('#form_TypeIlot').on('change', function () {
+    $('#search_ilot_form_TypeIlot').on('change', function () {
         varForm = recupFormIlot();
         formURL = "{{ path('vae_refgpc_ilotSearch') }}";
         ajaxForm(formURL, varForm);
     }); 
     
-    $('#form_Used').on('change', function () {
+    $('#search_ilot_form_Used').on('change', function () {
         varForm = recupFormIlot();
         formURL = "{{ path('vae_refgpc_ilotSearch') }}";
         ajaxForm(formURL, varForm);
     });
     
-    $('#form_Competences').on('change', function () {
+    $('#search_ilot_form_Competences').on('change', function () {
         varForm = recupFormIlot();
         formURL = "{{ path('vae_refgpc_ilotSearch') }}";
         ajaxForm(formURL, varForm);
     });     
      
-    $('#form_ServiceDem').on('change', function () {
+    $('#search_ilot_form_ServiceDem').on('change', function () {
         varForm = recupFormIlot();
         formURL = "{{ path('vae_refgpc_ilotSearch') }}";
         ajaxForm(formURL, varForm);
     }); 
     
-    $('#form_Entreprise').on('change', function () {
+    $('#search_ilot_form_Entreprise').on('change', function () {
         varForm = recupFormIlot();
         formURL = "{{ path('vae_refgpc_ilotSearch') }}";
         ajaxForm(formURL, varForm);
     }); 
     
-    $('#form_DomaineAct').on('change', function () {
+    $('#search_ilot_form_DomaineAct').on('change', function () {
         varForm = recupFormIlot();
         formURL = "{{ path('vae_refgpc_ilotSearch') }}";
         ajaxForm(formURL, varForm);
     }); 
     
-    $('input:radio[name="form[Optim]"]').change(function () {
+    $('input:radio[name="search_ilot_form[Optim]"]').change(function () {
         varForm = recupFormIlot();
         formURL = "{{ path('vae_refgpc_ilotSearch') }}";
         ajaxForm(formURL, varForm);
     }); 
     
-    $('#form_SiteGeo').on('change', function () {
+    $('#search_ilot_form_SiteGeo').on('change', function () {
         varForm = recupFormIlot();
         formURL = "{{ path('vae_refgpc_ilotSearch') }}";
         ajaxForm(formURL, varForm);
     }); 
     
     function recupFormIlot() {
-        var recupForm = $('form[name=form]').serialize();
+        var recupForm = $('form[name=search_ilot_form]').serialize();
         return recupForm;
     }   
         
