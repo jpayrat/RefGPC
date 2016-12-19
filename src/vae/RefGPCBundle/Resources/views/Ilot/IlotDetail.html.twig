@@ -1,0 +1,33 @@
+
+
+Détail de l'îlot : {{ dump(detailIlot) }} <br />
+
+    
+    {{ detailIlot.getIlocodeilot }} - [{{ detailIlot.getIlolibelleilot }}]
+    // 
+    Service : {{ detailIlot.getTIloSedidservdem.getSedidservdem }}
+    // 
+    Type de l'îlot : {{ detailIlot.getTIloTiidtypeilot.getTiidtypeilot }}
+    // 
+    Optimisé : {% if detailIlot.getIlooptim == 0 %} Non {% else %} Oui {% endif %}
+    // 
+    Utilisé : {{ detailIlot.getTIloUsed.getUidused }}
+    
+    <br />
+    
+    Domaine d'activité : {{ detailIlot.getTIloDaiddomact.getDaiddomact }}
+    // 
+    Compétence : {{ detailIlot.getTIloCoidcompetence.getCoIdCompetence }}
+    // 
+    Zone d'intervention : {{ detailIlot.getTSitesSiidsite.getSilibellesite }}
+    // 
+    Entreprise : {{ detailIlot.getTIloEnidentreprise.getEnlibelleentreprise }}
+    
+    <br />
+    
+    Commentaire : {{ detailIlot.getIloinfo }}
+    <br />
+    Commentaire Admin : {{ detailIlot.getIloinfoadmin }}
+    
+    <br /><br />
+    

@@ -64,6 +64,16 @@ $(document).ready(function () {
        
     var varForm;    
     var formURL;
+    var ilot;    
+        
+    $('#results_ilot').on('click', '.lienDetailIlot', function () {
+        
+        varForm = $(this).attr('ilot'); // On récupère l'îlot
+        formURL = "{{ path('vae_refgpc_ilotDetail') }}";
+        ajaxForm(formURL, varForm);
+    });    
+        
+        
         
     $('#reinitForm').on('click', function () {
         $('form[name=search_ilot_form]')[0].reset();
@@ -71,9 +81,7 @@ $(document).ready(function () {
         //recup_form_ilot();
         //requete_formulaire('reinit');
     });
-    
-    
-    
+ 
     $('#listAll').on('click', function () {
         formURL = "{{ path('vae_refgpc_ilotSearchAll') }}";
         ajaxForm(formURL, '');

@@ -27,71 +27,6 @@ use Doctrine\ORM\EntityRepository;
 
 class IlotController extends Controller {
 
-    public function ajaxIlotSearchAction($base, Request $request )
-    {
-        if ($request->isXmlHttpRequest()) {
-        
-            $categorie = 'ilot'; // Permet de souligner menu vertical 'ilot'
-            
-            // Déclaration du Doctrine Manager pour faire des requêtes
-            $repo = $this->getDoctrine()->getManager();
-            
-            // Permet de récupérer le code base : T1 ou K2 en fonction de la $base passé par l'URL
-            $infoBases = new InfosBase($repo, $base, $categorie);
-                $codeBase = $infoBases->getCodeBase();
-                
-            // récupération des données formulaire
-            $valselect = $request->request->get('search_ilot_form');
-  
-            // Récupération de tous les îlots
-            $listIlot = new RequestIlot();
-            $listIlots = $listIlot->selectSearchIlot($codeBase, $repo, $valselect);
-            
-            // Envoi à la vue Twig
-            return $this->render('vaeRefGPCBundle:Ilot:IlotSearch.html.twig', array(
-                'allIlots' => $listIlots['allIlots'],
-                'nbIlots' => $listIlots['nbIlots']
-            ));   
-        }
-        else
-        {
-         echo 'erreur'; exit;
-            // La requête envoyé n'est pas une requête ajax -> Erreur 400
-           return new Response('Erreur : ce n\'est pas une requête ajax !', 400);
-        }
-    }
-    
-    public function ajaxIlotSearchAllAction($base, Request $request )
-    {
-        if ($request->isXmlHttpRequest()) {
-
-            $categorie = 'ilot'; // Permet de souligner menu vertical 'ilot'
-            
-            // Déclaration du Doctrine Manager pour faire des requêtes
-            $repo = $this->getDoctrine()->getManager();
-            
-            // Permet de récupérer le code base : T1 ou K2 en fonction de la $base passé par l'URL
-            $infoBases = new InfosBase($repo, $base, $categorie);
-                $codeBase = $infoBases->getCodeBase();
-            
-            // Récupération de tous les îlots
-            $listIlot = new RequestIlot();
-            $listIlots = $listIlot->selectAllIlots($codeBase, $repo);
-            
-            // Envoi à la vue Twig 
-            return $this->render('vaeRefGPCBundle:Ilot:IlotSearch.html.twig', array(
-                'allIlots' => $listIlots['allIlots'],
-                'nbIlots' => $listIlots['nbIlots']
-            ));
-        }
-        else
-        {
-            // La requête envoyé n'est pas une requête ajax -> Erreur 400
-            return new Response('Erreur : ce n\'est pas une requête ajax !', 400);
-        }
-    }
-    
-    
     public function indexAction($base, Request $request)
     {
         // initialisation du repository
@@ -166,7 +101,108 @@ class IlotController extends Controller {
         'codeBase' => $codeBase,
         'base' => $base,
         'form' => $form->createView(),
-        ));
-           
+        ));     
     }
+    
+    public function ajaxIlotSearchAction($base, Request $request )
+    {
+        if ($request->isXmlHttpRequest()) {
+        
+            $categorie = 'ilot'; // Permet de souligner menu vertical 'ilot'
+            
+            // Déclaration du Doctrine Manager pour faire des requêtes
+            $repo = $this->getDoctrine()->getManager();
+            
+            // Permet de récupérer le code base : T1 ou K2 en fonction de la $base passé par l'URL
+            $infoBases = new InfosBase($repo, $base, $categorie);
+                $codeBase = $infoBases->getCodeBase();
+                
+            // récupération des données formulaire
+            $valselect = $request->request->get('search_ilot_form');
+  
+            // Récupération de tous les îlots
+            $listIlot = new RequestIlot();
+            $listIlots = $listIlot->selectSearchIlot($codeBase, $repo, $valselect);
+            
+            // Envoi à la vue Twig
+            return $this->render('vaeRefGPCBundle:Ilot:IlotSearch.html.twig', array(
+                'allIlots' => $listIlots['allIlots'],
+                'nbIlots' => $listIlots['nbIlots'],
+                'base' => $base
+            ));   
+        }
+        else
+        {
+         echo 'erreur'; exit;
+            // La requête envoyé n'est pas une requête ajax -> Erreur 400
+           return new Response('Erreur : ce n\'est pas une requête ajax !', 400);
+        }
+    }
+    
+    public function ajaxIlotSearchAllAction($base, Request $request )
+    {
+        if ($request->isXmlHttpRequest()) {
+
+            $categorie = 'ilot'; // Permet de souligner menu vertical 'ilot'
+            
+            // Déclaration du Doctrine Manager pour faire des requêtes
+            $repo = $this->getDoctrine()->getManager();
+            
+            // Permet de récupérer le code base : T1 ou K2 en fonction de la $base passé par l'URL
+            $infoBases = new InfosBase($repo, $base, $categorie);
+                $codeBase = $infoBases->getCodeBase();
+            
+            // Récupération de tous les îlots
+            $listIlot = new RequestIlot();
+            $listIlots = $listIlot->selectAllIlots($codeBase, $repo);
+            
+            // Envoi à la vue Twig 
+            return $this->render('vaeRefGPCBundle:Ilot:IlotSearch.html.twig', array(
+                'allIlots' => $listIlots['allIlots'],
+                'nbIlots' => $listIlots['nbIlots'],
+                'base' => $base
+            ));
+        }
+        else
+        {
+            // La requête envoyé n'est pas une requête ajax -> Erreur 400
+            return new Response('Erreur : ce n\'est pas une requête ajax !', 400);
+        }
+    }
+    
+    public function ajaxIlotDetailAction($base, $ilot)
+    {
+        
+        if ($request->isXmlHttpRequest()) {
+            
+        
+        $categorie = 'ilot'; // Permet de souligner menu vertical 'ilot'
+            
+        // Déclaration du Doctrine Manager pour faire des requêtes
+        $repo = $this->getDoctrine()->getManager();
+            
+        // Permet de récupérer le code base : T1 ou K2 en fonction de la $base passé par l'URL
+            $infoBases = new InfosBase($repo, $base, $categorie);
+                $codeBase = $infoBases->getCodeBase();
+            
+            // Récupération de tous les îlots
+            $detailIlot = new RequestIlot();
+            $oneIlot = $detailIlot->selectOneIlot($codeBase, $ilot, $repo);
+            
+            // Envoi à la vue Twig 
+            return $this->render('vaeRefGPCBundle:Ilot:IlotDetail.html.twig', array(
+                'detailIlot' => $oneIlot,                
+                'base' => $base
+            ));
+           
+        }
+        else
+        {
+            // La requête envoyé n'est pas une requête ajax -> Erreur 400
+            return new Response('Erreur : ce n\'est pas une requête ajax !', 400);
+        }
+    }
+    
+    
+
 }

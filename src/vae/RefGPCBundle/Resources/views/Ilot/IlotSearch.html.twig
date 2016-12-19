@@ -1,13 +1,41 @@
 Nombre d'îlot : {{ nbIlots }} <br />
 
-<ul>
+
     {% for ilot in allIlots %}
 
-    <li>{{ ilot.getIloCodeIlot }} - {{ ilot.getTIloCoidcompetence.getCoIdCompetence }}</li>
-
+    <a href="#" class="lienDetailIlot" ilot="{{ilot.getIlocodeilot}}"> 
+    
+    {{ ilot.getIloCodeIlot }} - [{{ ilot.getIloLibelleIlot }}]
+    // 
+    Service : {{ ilot.getTIloSedidservdem.getSedidservdem }}
+    // 
+    Type de l'îlot : {{ ilot.getTIloTiidtypeilot.getTiidtypeilot }}
+    // 
+    Optimisé : {% if ilot.getIlooptim == 0 %} Non {% else %} Oui {% endif %}
+    // 
+    Utilisé : {{ ilot.getTIloUsed.getUidused }}
+    
+    <br />
+    
+    Domaine d'activité : {{ ilot.getTIloDaiddomact.getDaiddomact }}
+    // 
+    Compétence : {{ ilot.getTIloCoidcompetence.getCoIdCompetence }}
+    // 
+    Zone d'intervention : {{ ilot.getTSitesSiidsite.getSilibellesite }}
+    // 
+    Entreprise : {{ ilot.getTIloEnidentreprise.getEnlibelleentreprise }}
+    
+    <br />
+    
+    Commentaire : {{ ilot.getIloinfo }}
+    
+    <br /><br />
+    
+    </a>
+    
     {% endfor %}
 
-</ul>
+
         
         
      

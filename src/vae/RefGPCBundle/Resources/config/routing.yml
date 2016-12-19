@@ -30,7 +30,15 @@ vae_refgpc_ilotSearchAll:
        base: MP
     requirements:
         _method: POST
-        base:   LR|MP|AD        
+        base:   LR|MP|AD
+vae_refgpc_ilotDetail:
+    path: /{base}/ilot/{ilot}
+    defaults:
+       _controller: vaeRefGPCBundle:Ilot:ajaxIlotDetail
+       base: MP
+    requirements:
+        _method: POST
+        base:   LR|MP|AD  
         
 vae_refgpc_centre:
     path:     /{base}/centre
