@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="vae\RefGPCBundle\Entity\TIloServicedemandeur" table="t_ilo_servicedemandeur">
+    <id name="sedid" type="integer" column="sedId">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="sedidservdem" type="string" column="sedIdServDem" length="15" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="sedlibelleservdem" type="string" column="sedLibelleServDem" length="50" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="sedcodebase" type="string" column="sedCodeBase" length="2" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="vae\RefGPCBundle\Entity\TComptes" table="t_comptes">
+    <indexes>
+      <index name="fk_t_comptes_t_roles1_idx" columns="t_roles_rolRole"/>
+    </indexes>
+    <id name="idcomptes" type="integer" column="idComptes">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nomcompte" type="string" column="nomCompte" length="50" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="mdpcompte" type="string" column="mdpCompte" length="20" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="emailcompte" type="string" column="emailCompte" length="50" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-one field="tRolesRolrole" target-entity="TRoles" fetch="LAZY">
+      <join-columns>
+        <join-column name="t_roles_rolRole" referenced-column-name="rolRole"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
