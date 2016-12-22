@@ -24,16 +24,121 @@
 
                 <div id="formIlot">
                 <h1>Ilots GPC - {{ libelleBase }} - {{ nbIlots }} îlots // Code base : {{ codeBase }}</h1>
- 
-  
-                <span id="reinitForm">Réinitialiser le formulaire</span><br />
-                <span id="listAll">Lister tous les îlots</span><br />
-        
-                {{ form(form)}}
+                <hr /><br />
+                {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+                    {# Les erreurs générales du formulaire. #}
+                    {{ form_errors(form) }}
+
+                    {# Génération manuelle et éclatée : #}
+                    <div class="form-group">
+                        {# Génération du label. #}
+                        {{ form_label(form.RechercheGlobale, "Recherche globale", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+                        {# Affichage des erreurs pour ce champ précis. #}
+                        {{ form_errors(form.RechercheGlobale) }}
+                        <div class="col-sm-3">
+                            {# Génération de l'input. #}
+                            {{ form_widget(form.RechercheGlobale, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="col-sm-3">
+                            <span id="reinitForm">Réinitialiser le formulaire</span>
+                        </div>
+                        <div class="col-sm-3">
+                            <span id="listAll">Lister tous les îlots</span>
+                        </div>
+                    </div>
+     
+                    <div class="form-group">
+                        {# Génération du label. #}
+                        {{ form_label(form.IlotText, "Ilot", {'label_attr': {'class': 'col-sm-1 control-label'}}) }}
+                        {# Affichage des erreurs pour ce champ précis. #}
+                        {{ form_errors(form.IlotText) }}
+                        <div class="col-sm-1">
+                            {# Génération de l'input. #}
+                            {{ form_widget(form.IlotText, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        {# Génération du label. #}
+                        {{ form_label(form.IlotList, "ou", {'label_attr': {'class': 'col-sm-1 control-label'}}) }}
+                        {# Affichage des erreurs pour ce champ précis. #}
+                        {{ form_errors(form.IlotList) }}
+                        <div class="col-sm-3">
+                            {# Génération de l'input. #}
+                            {{ form_widget(form.IlotList, {'attr': {'class': 'form-control'}}) }}
+                        </div>                        
+                        {# Génération du label. #}
+                        {{ form_label(form.TypeIlot, "Type d'îlot", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                        {# Affichage des erreurs pour ce champ précis. #}
+                        {{ form_errors(form.TypeIlot) }}
+                        <div class="col-sm-1">
+                            {# Génération de l'input. #}
+                            {{ form_widget(form.TypeIlot, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        {# Génération du label. #}
+                        {{ form_label(form.Used, "Utilisé ?", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                        {# Affichage des erreurs pour ce champ précis. #}
+                        {{ form_errors(form.Used) }}
+                        <div class="col-sm-1">
+                            {# Génération de l'input. #}
+                            {{ form_widget(form.Used, {'attr': {'class': 'form-control'}}) }}
+                        </div> 
+                    </div>                
+
+                    <div class="form-group">
+                        {# Génération du label. #}
+                        {{ form_label(form.Competences, "Compétence de l'îlot", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+                        {# Affichage des erreurs pour ce champ précis. #}
+                        {{ form_errors(form.Competences) }}
+                        <div class="col-sm-3">
+                            {# Génération de l'input. #}
+                            {{ form_widget(form.Competences, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        {# Génération du label. #}
+                        {{ form_label(form.ServiceDem, "Service concerné", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+                        {# Affichage des erreurs pour ce champ précis. #}
+                        {{ form_errors(form.ServiceDem) }}
+                        <div class="col-sm-3">
+                            {# Génération de l'input. #}
+                            {{ form_widget(form.ServiceDem, {'attr': {'class': 'form-control'}}) }}
+                        </div>                            
+                    </div> 
+                    <div class="form-group">
+                        {# Génération du label. #}
+                        {{ form_label(form.Entreprise, "Entreprise", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+                        {# Affichage des erreurs pour ce champ précis. #}
+                        {{ form_errors(form.Entreprise) }}
+                        <div class="col-sm-3">
+                            {# Génération de l'input. #}
+                            {{ form_widget(form.Entreprise, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        {# Génération du label. #}
+                        {{ form_label(form.SiteGeo, "Site géographique", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+                        {# Affichage des erreurs pour ce champ précis. #}
+                        {{ form_errors(form.SiteGeo) }}
+                        <div class="col-sm-3">
+                            {# Génération de l'input. #}
+                            {{ form_widget(form.SiteGeo, {'attr': {'class': 'form-control'}}) }}
+                        </div>                            
+                    </div>                 
+                    <div class="form-group">
+                        {# Génération du label. #}
+                        {{ form_label(form.DomaineAct, "Domaine d'activité", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+                        {# Affichage des erreurs pour ce champ précis. #}
+                        {{ form_errors(form.DomaineAct) }}
+                        <div class="col-sm-3">
+                            {# Génération de l'input. #}
+                            {{ form_widget(form.DomaineAct, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        {# Génération du label. #}
+                        {{ form_label(form.Optim, "Ilot optimisé", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+                        {# Affichage des erreurs pour ce champ précis. #}
+                        {{ form_errors(form.Optim) }}
+                        <div class="col-sm-3">
+                            {# Génération des boutons radio. #}
+                                {{ form_widget(form.Optim) }}
+                        </div>                            
+                    </div>                
                 </div>
         
                 <div id="results_ilot">
-                result ilot
                 </div>
 
             </div>
@@ -41,19 +146,18 @@
   </div>
         
     {{ include("vaeRefGPCBundle::piedPage.html.twig") }}
-     
     {% block javascripts %}
         {{ parent() }}
         <script src="{{ asset('js/ilotFunctions.js') }}"></script>
-    
+        
      <script>
     $(document).ready(function () {
   
     var varForm;    
     var formURLIlotSearch = "{{ path('vae_refgpc_ilotSearch', { 'base': base|default('MP') }) }}";
     var formUrl;
-    var ilot;    
-        
+    var ilot;   
+    
     $('#results_ilot').on('click', '.lienDetailIlot', function () {
         $('#formIlot').hide();
         varForm = 'ilot[codeIlot] =' + $(this).attr('ilot'); // On récupère l'îlot, format pour POST
@@ -141,8 +245,7 @@
   
 });  
      </script>
-    {% endblock %}
-    
+    {% endblock %}   
 {% endblock %}    
     
    

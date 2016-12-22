@@ -1,18 +1,20 @@
-<div class="col-lg-9" style="border: 1px solid #000">
+<div class="col-sm-12">
 
 <div class="row">
-    <div class="col-lg-9" style="border: 1px solid #990000">
-
-    {{ detailIlot.getIlocodeilot }} - [{{ detailIlot.getIlolibelleilot }}] 
-    - Utilisé : {{ detailIlot.getTIloUsed.getUidused }}
-    
+    <div class="col-sm-9">
+        <h1>{{ detailIlot.getIlocodeilot }} - [{{ detailIlot.getIlolibelleilot }}]<h1>
+    </div>            
+    <div class="col-sm-3">
+        <h1>Utilisé : {{ detailIlot.getTIloUsed.getUidused }}</h1>
     </div>
-    
+</div>
+<hr />
+
 <div class="row">
-    <div class="col-lg-6">
+    <div class="col-sm-8">
         
     Compétence / Type d'îlot : {{ detailIlot.getTIloCoidcompetence.getCoIdCompetence }}
-    <br />
+    <br /><br />
     Service utilisateur de l'îlot : {{ detailIlot.getTIloSedidservdem.getSedidservdem }}
                                     - {{ detailIlot.getTIloSedidservdem.getSedlibelleservdem }}
     <br />
@@ -22,7 +24,7 @@
     Complément domaine d'activité : {{ detailIlot.getTIloDaiddomact.getDadetaildomact }}
     <br />
     Entreprise(s) intervenante(s) : {{ detailIlot.getTIloEnidentreprise.getEnlibelleentreprise }}
-    <br />
+    <br /><br />
     Ilot Optimisé : {% if detailIlot.getIlooptim == 0 %} Non {% else %} Oui {% endif %}
     <br />
     SAV / PROD : {{ detailIlot.getTIloPrsidprodsav.getPrslibelleprodsav }}
@@ -31,7 +33,7 @@
     </div>
   
     
-    <div class="col-lg-3">
+    <div class="col-sm-4">
     Date de création : {{ detailIlot.getIlodatecreation }}
     <br />
     Modifié le : {{ detailIlot.getIlodatemodif }}
@@ -44,8 +46,8 @@
 </div>
     
 <div class="row">
-    <div class="col-lg-9">
-    Commentaire :   {{ detailIlot.getIloinfo }}
+    <div class="col-sm-12">
+    Commentaire : {{ detailIlot.getIloinfo }}
     <br />
     Commentaire admin : {{ detailIlot.getIloinfoadmin }}
     </div>

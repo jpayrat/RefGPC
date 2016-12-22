@@ -116,6 +116,7 @@ class IlotController extends Controller {
             // Permet de récupérer le code base : T1 ou K2 en fonction de la $base passé par l'URL
             $infoBases = new InfosBase($repo, $base, $categorie);
                 $codeBase = $infoBases->getCodeBase();
+                $libelleBase = $infoBases->getLibelleBase();
                 
             // récupération des données formulaire
             $valselect = $request->request->get('search_ilot_form');
@@ -128,7 +129,8 @@ class IlotController extends Controller {
             return $this->render('vaeRefGPCBundle:Ilot:IlotSearch.html.twig', array(
                 'allIlots' => $listIlots['allIlots'],
                 'nbIlots' => $listIlots['nbIlots'],
-                'base' => $base
+                'base' => $base,
+                'libelleBase' => $libelleBase
             ));   
         }
         else
@@ -150,6 +152,7 @@ class IlotController extends Controller {
             // Permet de récupérer le code base : T1 ou K2 en fonction de la $base passé par l'URL
             $infoBases = new InfosBase($repo, $base, $categorie);
                 $codeBase = $infoBases->getCodeBase();
+                $libelleBase = $infoBases->getLibelleBase();
             
             // Récupération de tous les îlots
             $listIlot = new RequestIlot();
@@ -159,7 +162,8 @@ class IlotController extends Controller {
             return $this->render('vaeRefGPCBundle:Ilot:IlotSearch.html.twig', array(
                 'allIlots' => $listIlots['allIlots'],
                 'nbIlots' => $listIlots['nbIlots'],
-                'base' => $base
+                'base' => $base,
+                'libelleBase' => $libelleBase
             ));
         }
         else

@@ -1,37 +1,35 @@
-Nombre d'îlot : {{ nbIlots }} <br />
+<h2>{{ nbIlots }}   {% if nbIlots == 1 %} îlot correspond
+                    {% elseif nbIlots == 0 %} îlot correspond
+                    {% else %} îlots correspondent
+                    {% endif %} 
+                    à votre recherche sur {{ libelleBase }}</h2>
+<hr />
 
 
-    {% for ilot in allIlots %}
+{% for key, ilot in allIlots %}
 
-    <a href="#" class="lienDetailIlot" ilot="{{ilot.getIlocodeilot}}"> 
-    
-    {{ ilot.getIloCodeIlot }} - [{{ ilot.getIloLibelleIlot }}]
-    // 
-    Service : {{ ilot.getTIloSedidservdem.getSedidservdem }}
-    // 
-    Type de l'îlot : {{ ilot.getTIloTiidtypeilot.getTiidtypeilot }}
-    // 
-    Optimisé : {% if ilot.getIlooptim == 0 %} Non {% else %} Oui {% endif %}
-    // 
-    Utilisé : {{ ilot.getTIloUsed.getUidused }}
-    
-    <br />
-    
-    Domaine d'activité : {{ ilot.getTIloDaiddomact.getDaiddomact }}
-    // 
-    Compétence : {{ ilot.getTIloCoidcompetence.getCoIdCompetence }}
-    // 
-    Zone d'intervention : {{ ilot.getTSitesSiidsite.getSilibellesite }}
-    // 
-    Entreprise : {{ ilot.getTIloEnidentreprise.getEnlibelleentreprise }}
-    
-    <br />
-    
-    Commentaire : {{ ilot.getIloinfo }}
-    
-    <br /><br />
-    
-    </a>
+<a href="#" class="lienDetailIlot" ilot="{{ilot.getIlocodeilot}}">
+    <div class="row {% if (key%2 == 0) %} couleur_ligne_pair {% endif %}">
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-4">{{ ilot.getIloCodeIlot }} - [{{ ilot.getIloLibelleIlot }}]</div>
+                <div class="col-sm-2">Service : {{ ilot.getTIloSedidservdem.getSedidservdem }}</div>  
+                <div class="col-sm-2">Type de l'îlot : {{ ilot.getTIloTiidtypeilot.getTiidtypeilot }}</div>   
+                <div class="col-sm-2">Optimisé : {% if ilot.getIlooptim == 0 %} Non {% else %} Oui {% endif %}</div>    
+                <div class="col-sm-2">Utilisé : {{ ilot.getTIloUsed.getUidused }}</div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">Domaine d'activité : {{ ilot.getTIloDaiddomact.getDaiddomact }}</div>
+                <div class="col-sm-3">Compétence : {{ ilot.getTIloCoidcompetence.getCoIdCompetence }}</div>
+                <div class="col-sm-4">Zone d'intervention : {{ ilot.getTSitesSiidsite.getSilibellesite }}</div>
+                <div class="col-sm-2">Entreprise : {{ ilot.getTIloEnidentreprise.getEnlibelleentreprise }}</div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">Commentaire : {{ ilot.getIloinfo }}</div>
+            </div>
+        </div>          
+    </div>
+</a>
     
     {% endfor %}
 
