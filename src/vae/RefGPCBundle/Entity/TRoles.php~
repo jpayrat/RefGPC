@@ -29,5 +29,38 @@ class TRoles
     private $rolrole;
 
 
-}
 
+    /**
+     * Set rollibellerole
+     *
+     * @param string $rollibellerole
+     *
+     * @return TRoles
+     */
+    public function setRollibellerole($rollibellerole)
+    {
+        $this->rollibellerole = $rollibellerole;
+
+        return $this;
+    }
+
+    /**
+     * Get rollibellerole
+     *
+     * @return string
+     */
+    public function getRollibellerole()
+    {
+        return $this->rollibellerole;
+    }
+
+    /**
+     * Get rolrole
+     *
+     * @return integer
+     */
+    public function getRolrole()
+    {
+        return $this->rolrole;
+    }
+}

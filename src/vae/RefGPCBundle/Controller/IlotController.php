@@ -15,6 +15,8 @@ use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Doctrine\ORM\EntityRepository;
 
@@ -178,6 +180,11 @@ class IlotController extends Controller {
         
         if ($request->isXmlHttpRequest()) {
             
+            // On vérifie que l'utilisateur dispose bien du rôle ROLE_AUTEUR
+            if (!$this->get('security.authorization_checker')->isGranted('ROLE_MODERATEUR')) {
+
+            
+     
         $valselect = $request->request->get('ilot');
         $ilot = $valselect['codeIlot'];
    
@@ -200,7 +207,16 @@ class IlotController extends Controller {
                 'detailIlot' => $oneIlot,                
                 'base' => $base
             ));
-           
+          
+            }
+            else // le login est validé
+            {
+                // Sinon on déclenche une exception « Accès interdit »
+             return new Response("Affichage du détail de l'ilot avec un formulaire pour le modifier" );
+                
+            }
+            
+            
         }
         else
         {

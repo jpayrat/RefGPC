@@ -7,23 +7,17 @@
 
 {% block body %}
     
-    <div class="row">
-        <div class="col-lg-12 header"> 
-            {{ include("vaeRefGPCBundle::navHorizontal.html.twig") }}
-        </div>
-    </div>
-        
+    {{ include("vaeRefGPCBundle::navHorizontal.html.twig") }}
+ 
     <div class="row">
         <section class="col-lg-12 corps">
      
-            <div class="col-lg-3 lateral_nav">
-                {{ include("vaeRefGPCBundle::navVertical.html.twig") }}
-            </div>
- 
+            {{ include("vaeRefGPCBundle::navVertical.html.twig") }}
+   
             <div class="col-lg-9 container">
 
                 <div id="formIlot">
-                <h1>Ilots GPC - {{ libelleBase }} - {{ nbIlots }} îlots // Code base : {{ codeBase }}</h1>
+                <h1>Ilots GPC - {{ libelleBase }} - {{ nbIlots }} îlots</h1>
                 <hr /><br />
                 {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
                     {# Les erreurs générales du formulaire. #}

@@ -31,5 +31,52 @@ class TSiteParentzone
     private $siidsiteTSites;
 
 
-}
 
+    /**
+     * Set siidsite
+     *
+     * @param string $siidsite
+     *
+     * @return TSiteParentzone
+     */
+    public function setSiidsite($siidsite)
+    {
+        $this->siidsite = $siidsite;
+
+        return $this;
+    }
+
+    /**
+     * Get siidsite
+     *
+     * @return string
+     */
+    public function getSiidsite()
+    {
+        return $this->siidsite;
+    }
+
+    /**
+     * Set siidsiteTSites
+     *
+     * @param string $siidsiteTSites
+     *
+     * @return TSiteParentzone
+     */
+    public function setSiidsiteTSites($siidsiteTSites)
+    {
+        $this->siidsiteTSites = $siidsiteTSites;
+
+        return $this;
+    }
+
+    /**
+     * Get siidsiteTSites
+     *
+     * @return string
+     */
+    public function getSiidsiteTSites()
+    {
+        return $this->siidsiteTSites;
+    }
+}

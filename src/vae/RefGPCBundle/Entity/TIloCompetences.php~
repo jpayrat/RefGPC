@@ -43,5 +43,86 @@ class TIloCompetences
     private $coid;
 
 
-}
 
+    /**
+     * Set coidcompetence
+     *
+     * @param string $coidcompetence
+     *
+     * @return TIloCompetences
+     */
+    public function setCoidcompetence($coidcompetence)
+    {
+        $this->coidcompetence = $coidcompetence;
+
+        return $this;
+    }
+
+    /**
+     * Get coidcompetence
+     *
+     * @return string
+     */
+    public function getCoidcompetence()
+    {
+        return $this->coidcompetence;
+    }
+
+    /**
+     * Set colibellecompetence
+     *
+     * @param string $colibellecompetence
+     *
+     * @return TIloCompetences
+     */
+    public function setColibellecompetence($colibellecompetence)
+    {
+        $this->colibellecompetence = $colibellecompetence;
+
+        return $this;
+    }
+
+    /**
+     * Get colibellecompetence
+     *
+     * @return string
+     */
+    public function getColibellecompetence()
+    {
+        return $this->colibellecompetence;
+    }
+
+    /**
+     * Set cocodebase
+     *
+     * @param string $cocodebase
+     *
+     * @return TIloCompetences
+     */
+    public function setCocodebase($cocodebase)
+    {
+        $this->cocodebase = $cocodebase;
+
+        return $this;
+    }
+
+    /**
+     * Get cocodebase
+     *
+     * @return string
+     */
+    public function getCocodebase()
+    {
+        return $this->cocodebase;
+    }
+
+    /**
+     * Get coid
+     *
+     * @return integer
+     */
+    public function getCoid()
+    {
+        return $this->coid;
+    }
+}

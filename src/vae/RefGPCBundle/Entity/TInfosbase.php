@@ -81,4 +81,3 @@ class TInfosbase
         return $this->ibidinfosbase;
     }
 }
-

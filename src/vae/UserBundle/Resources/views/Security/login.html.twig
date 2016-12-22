@@ -3,18 +3,21 @@
 
 {% extends "vaeRefGPCBundle::default.html.twig" %}
 
-{% block title %}{{ parent() }} - Référentiel GPC{% endblock %}
-
+{% block title %}{{ parent() }} Les ilots {% endblock %}
+{% block stylesheets %}{{ parent() }}{% endblock %}
 
 {% block body %}
-
-  {{ include("vaeRefGPCBundle::navHorizontal.html.twig") }}
-  
-  <section class="corps">
-  
-    {{ include("vaeRefGPCBundle::navVertical.html.twig") }}
-  
-    <div class="container" id="ilot_corps">
+    
+    {{ include("vaeRefGPCBundle::navHorizontal.html.twig") }}
+ 
+    <div class="row">
+        <section class="col-lg-12 corps">
+     
+            {{ include("vaeRefGPCBundle::navVertical.html.twig") }}
+     
+            <div class="col-lg-9 container">
+    
+                <h1> Identifiez-vous :</h1><hr /><br/>
 
           {# S'il y a une erreur, on l'affiche dans un joli cadre #}
 
@@ -29,15 +32,16 @@
 
   <form action="{{ path('fos_user_security_check') }}" method="post">
 
-    <label for="username">Login :</label>
+    <label for="username">Identifiant :</label>
     <input type="text" id="username" name="_username" value="{{ last_username }}" />
 
+    <br /><br />
 
     <label for="password">Mot de passe :</label>
 
     <input type="password" id="password" name="_password" />
 
-    <br />
+    <br /><br />
 
     <input type="submit" value="Connexion" />
 

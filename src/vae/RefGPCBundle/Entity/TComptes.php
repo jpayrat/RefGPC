@@ -139,4 +139,3 @@ class TComptes
         return $this->tRolesRolrole;
     }
 }
-

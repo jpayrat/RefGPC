@@ -29,5 +29,38 @@ class TIloBandeau
     private $banidbandeau;
 
 
-}
 
+    /**
+     * Set banlibellebandeau
+     *
+     * @param string $banlibellebandeau
+     *
+     * @return TIloBandeau
+     */
+    public function setBanlibellebandeau($banlibellebandeau)
+    {
+        $this->banlibellebandeau = $banlibellebandeau;
+
+        return $this;
+    }
+
+    /**
+     * Get banlibellebandeau
+     *
+     * @return string
+     */
+    public function getBanlibellebandeau()
+    {
+        return $this->banlibellebandeau;
+    }
+
+    /**
+     * Get banidbandeau
+     *
+     * @return string
+     */
+    public function getBanidbandeau()
+    {
+        return $this->banidbandeau;
+    }
+}

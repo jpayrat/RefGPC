@@ -49,6 +49,119 @@ class TIloDomaineactivite
      */
     private $daid;
 
-
+    
+    
+//***************************
+public function getFormLibelleDomActETId()
+{
+    
+    return ($this->daiddomact.' ('.$this->dalibelledomact.')');
+    
 }
 
+    /**
+     * Set daiddomact
+     *
+     * @param string $daiddomact
+     *
+     * @return TIloDomaineactivite
+     */
+    public function setDaiddomact($daiddomact)
+    {
+        $this->daiddomact = $daiddomact;
+
+        return $this;
+    }
+
+    /**
+     * Get daiddomact
+     *
+     * @return string
+     */
+    public function getDaiddomact()
+    {
+        return $this->daiddomact;
+    }
+
+    /**
+     * Set dalibelledomact
+     *
+     * @param string $dalibelledomact
+     *
+     * @return TIloDomaineactivite
+     */
+    public function setDalibelledomact($dalibelledomact)
+    {
+        $this->dalibelledomact = $dalibelledomact;
+
+        return $this;
+    }
+
+    /**
+     * Get dalibelledomact
+     *
+     * @return string
+     */
+    public function getDalibelledomact()
+    {
+        return $this->dalibelledomact;
+    }
+
+    /**
+     * Set dadetaildomact
+     *
+     * @param string $dadetaildomact
+     *
+     * @return TIloDomaineactivite
+     */
+    public function setDadetaildomact($dadetaildomact)
+    {
+        $this->dadetaildomact = $dadetaildomact;
+
+        return $this;
+    }
+
+    /**
+     * Get dadetaildomact
+     *
+     * @return string
+     */
+    public function getDadetaildomact()
+    {
+        return $this->dadetaildomact;
+    }
+
+    /**
+     * Set dacodebase
+     *
+     * @param string $dacodebase
+     *
+     * @return TIloDomaineactivite
+     */
+    public function setDacodebase($dacodebase)
+    {
+        $this->dacodebase = $dacodebase;
+
+        return $this;
+    }
+
+    /**
+     * Get dacodebase
+     *
+     * @return string
+     */
+    public function getDacodebase()
+    {
+        return $this->dacodebase;
+    }
+
+    /**
+     * Get daid
+     *
+     * @return integer
+     */
+    public function getDaid()
+    {
+        return $this->daid;
+    }
+}

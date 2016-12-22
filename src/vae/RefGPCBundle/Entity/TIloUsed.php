@@ -23,4 +23,3 @@ class TIloUsed
         return $this->uidused;
     }
 }
-

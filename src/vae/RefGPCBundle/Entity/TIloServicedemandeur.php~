@@ -43,5 +43,86 @@ class TIloServicedemandeur
     private $sedid;
 
 
-}
 
+    /**
+     * Set sedidservdem
+     *
+     * @param string $sedidservdem
+     *
+     * @return TIloServicedemandeur
+     */
+    public function setSedidservdem($sedidservdem)
+    {
+        $this->sedidservdem = $sedidservdem;
+
+        return $this;
+    }
+
+    /**
+     * Get sedidservdem
+     *
+     * @return string
+     */
+    public function getSedidservdem()
+    {
+        return $this->sedidservdem;
+    }
+
+    /**
+     * Set sedlibelleservdem
+     *
+     * @param string $sedlibelleservdem
+     *
+     * @return TIloServicedemandeur
+     */
+    public function setSedlibelleservdem($sedlibelleservdem)
+    {
+        $this->sedlibelleservdem = $sedlibelleservdem;
+
+        return $this;
+    }
+
+    /**
+     * Get sedlibelleservdem
+     *
+     * @return string
+     */
+    public function getSedlibelleservdem()
+    {
+        return $this->sedlibelleservdem;
+    }
+
+    /**
+     * Set sedcodebase
+     *
+     * @param string $sedcodebase
+     *
+     * @return TIloServicedemandeur
+     */
+    public function setSedcodebase($sedcodebase)
+    {
+        $this->sedcodebase = $sedcodebase;
+
+        return $this;
+    }
+
+    /**
+     * Get sedcodebase
+     *
+     * @return string
+     */
+    public function getSedcodebase()
+    {
+        return $this->sedcodebase;
+    }
+
+    /**
+     * Get sedid
+     *
+     * @return integer
+     */
+    public function getSedid()
+    {
+        return $this->sedid;
+    }
+}

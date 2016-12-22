@@ -29,5 +29,38 @@ class TIloFiltrage
     private $fiidfiltrage;
 
 
-}
 
+    /**
+     * Set filibellefiltrage
+     *
+     * @param string $filibellefiltrage
+     *
+     * @return TIloFiltrage
+     */
+    public function setFilibellefiltrage($filibellefiltrage)
+    {
+        $this->filibellefiltrage = $filibellefiltrage;
+
+        return $this;
+    }
+
+    /**
+     * Get filibellefiltrage
+     *
+     * @return string
+     */
+    public function getFilibellefiltrage()
+    {
+        return $this->filibellefiltrage;
+    }
+
+    /**
+     * Get fiidfiltrage
+     *
+     * @return string
+     */
+    public function getFiidfiltrage()
+    {
+        return $this->fiidfiltrage;
+    }
+}

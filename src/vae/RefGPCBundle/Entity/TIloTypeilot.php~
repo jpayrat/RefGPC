@@ -29,5 +29,38 @@ class TIloTypeilot
     private $tiidtypeilot;
 
 
-}
 
+    /**
+     * Set tilibelletypeilot
+     *
+     * @param string $tilibelletypeilot
+     *
+     * @return TIloTypeilot
+     */
+    public function setTilibelletypeilot($tilibelletypeilot)
+    {
+        $this->tilibelletypeilot = $tilibelletypeilot;
+
+        return $this;
+    }
+
+    /**
+     * Get tilibelletypeilot
+     *
+     * @return string
+     */
+    public function getTilibelletypeilot()
+    {
+        return $this->tilibelletypeilot;
+    }
+
+    /**
+     * Get tiidtypeilot
+     *
+     * @return string
+     */
+    public function getTiidtypeilot()
+    {
+        return $this->tiidtypeilot;
+    }
+}

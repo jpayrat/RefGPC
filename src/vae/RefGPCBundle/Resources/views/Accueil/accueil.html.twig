@@ -2,22 +2,22 @@
 
 {% extends "vaeRefGPCBundle::default.html.twig" %}
 
-
-{% block title %}{{ parent() }} - Référentiel GPC{% endblock %}
-
+{% block title %}{{ parent() }} Les ilots {% endblock %}
+{% block stylesheets %}{{ parent() }}{% endblock %}
 
 {% block body %}
-
-  {{ include("vaeRefGPCBundle::navHorizontal.html.twig") }}
-  
-  <section class="corps">
-  
-    {{ include("vaeRefGPCBundle::navVertical.html.twig") }}
-  
-    <div class="container" id="ilot_corps">
-
-        <h1>Tableau de bord - {{ libelleBase }}</h1>
+    
+    {{ include("vaeRefGPCBundle::navHorizontal.html.twig") }}
  
+    <div class="row">
+        <section class="col-lg-12 corps">
+     
+            {{ include("vaeRefGPCBundle::navVertical.html.twig") }}
+     
+            <div class="col-lg-9 container">
+   
+        <h1>Tableau de bord - {{ libelleBase }}</h1>
+        <hr />
         <br />
         Le tableau de bord contiendra pour MP différent de LR : <br /><br />
         - un récap des différents fichier uploadé avec la date de mise en ligne
