@@ -1,22 +1,18 @@
-    <div class="lateral_nav">
 
-        <h1>je recherche ...</h1>
-        <ul>
-            <!--<li><a href="#" id="lienCarto">Cartographie</a></li>-->
-            <li class="{{ cssMenuVertical['classCSSLienIlot']|default('') }}">
-                <a href="{{ path('vae_refgpc_ilot', { 'base': base|default('MP') }) }}" id="lienIlot">
-                    Ilots
-                </a>
-            </li>
-            <li class="{{ cssMenuVertical['classCSSLienCentre']|default('') }}">
-                <a href="{{ path('vae_refgpc_centre', { 'base': base|default('MP') }) }}" id="lienCentre">
-                    Centres
-                </a>
-            </li>
-            <!--<li class="<?= $classLienMenuLateralTech; ?>"><a href="tech" id="lienTech">Techniciens</a></li>-->
-            <!--<li><a href="#" id="lienActProd">Activité / produit</a></li>
+    <h1>je recherche ...</h1>
+    <ul>
+        <li class="{{ cssMenuVertical['classCSSLienIlot']|default('') }}">
+            <a href="{{ path('vae_refgpc_ilot', { 'base': base|default('MP') }) }}" id="lienIlot">
+                Ilots
+            </a>
+        </li>
+        <li class="{{ cssMenuVertical['classCSSLienCentre']|default('') }}">
+            <a href="{{ path('vae_refgpc_centre', { 'base': base|default('MP') }) }}" id="lienCentre">
+                Centres
+            </a>
+        </li>
+    </ul>
 
-            <li><a href="#" id="lienAigFin">Aiguillage E/RS</a></li>-->
-        </ul>
+                   
 
-    </div>
+                    

@@ -21,10 +21,6 @@ class searchIlotForm extends AbstractType
     {
         $codeBase = $options['data']['data'];
         
-        //print_r($options);
-        //exit();////////////
-        // test
-        
         $builder
                 ->add('RechercheGlobale', TextType::class, array(
                     'label' => 'Recherche Globale',

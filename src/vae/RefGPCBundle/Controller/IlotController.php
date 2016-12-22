@@ -133,9 +133,8 @@ class IlotController extends Controller {
         }
         else
         {
-         echo 'erreur'; exit;
             // La requête envoyé n'est pas une requête ajax -> Erreur 400
-           return new Response('Erreur : ce n\'est pas une requête ajax !', 400);
+            return new Response('Erreur : ce n\'est pas une requête ajax !', 400);
         }
     }
     
@@ -170,12 +169,15 @@ class IlotController extends Controller {
         }
     }
     
-    public function ajaxIlotDetailAction($base, $ilot)
+    public function ajaxIlotDetailAction($base, Request $request)
     {
         
         if ($request->isXmlHttpRequest()) {
             
-        
+        $valselect = $request->request->get('ilot');
+        $ilot = $valselect['codeIlot'];
+   
+            
         $categorie = 'ilot'; // Permet de souligner menu vertical 'ilot'
             
         // Déclaration du Doctrine Manager pour faire des requêtes

@@ -25,15 +25,15 @@ and open the template in the editor.
 html { margin: 0; padding: 0; background-color: #f6f6f6; }
 body  { margin: 0; padding: 0; background-color: #fff; font-family: 'MyriadText', Helvetica, Arial, Verdana, sans-serif; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-style: normal; font-variant: normal; font-weight: normal; }
 
-h1 { color: #f70; font-family: "HelveticaNeueThin"; font-weight: 500; font-size: 1.7em; letter-spacing: -1px; line-height: 44px; padding: 0 8px; margin: 10px 0;}
+h1 { color: #f70 !important; font-family: "HelveticaNeueThin" !important;
+     font-weight: 500; font-size: 1.7em; letter-spacing: -1px; line-height: 44px;
+     padding: 0 8px; margin: 10px 0 !important; }
 h2 { color: rgb(51, 51, 51); font-family: 'ProximaLight', Helvetica, Arial, Verdana, sans-serif; font-weight: 100; font-size: 1.3em; letter-spacing: -1px; line-height: 34px; padding: 0; margin: 0;}
 
 hr { height: 1px; border: 0; background-color: #969696; clear: both; width: 100%; margin: 4px auto 10px auto; }
 
 
-.header { width: 100%; height: 58px; margin: 0 0 15px 0; border: 0px solid #000; display: inline-block; vertical-align: bottom; text-align: center; background-image: url("../img/degrade2.jpg"); background-repeat: repeat-x; box-shadow: 0px 4px 8px #656565;}
-
-.header .header_entete {vertical-align: bottom;  width: 1170px; margin: 3px auto 8px auto; padding: 8px 0; text-align: center; min-height: 36px; line-height: 36px; border: 0px solid #ff0000;}
+.header { height: 58px; line-height: 50px; margin: 0 0 15px 0; display: inline-block; vertical-align: bottom; text-align: center; background-image: url("../img/degrade2.jpg"); background-repeat: repeat-x; box-shadow: 0px 4px 8px #656565;}
 .header img, .header div, .header .nav { display: inline-block; vertical-align: middle; }
 .header .titre { font-size: 1.4em; margin: 0 0 0 10px; vertical-align: bottom; color: #fff; }
 .header .titre a {color: inherit; text-decoration: inherit; position: relative; top: 2px;}
@@ -47,7 +47,7 @@ hr { height: 1px; border: 0; background-color: #969696; clear: both; width: 100%
 .header .nav div a:hover { text-decoration: none; transform: scale(1.1); }
 
 
-.lateral_nav { display: inline-block; vertical-align: top; width: 17%; border: 0px solid #000; text-align: center; }
+.lateral_nav { display: inline-block; vertical-align: top; border: 0px solid #000; text-align: center; }
 .lateral_nav h1 { color: #f70; font-weight: 400; font-size: 1.5em; letter-spacing: -1px; line-height: 38px; padding: 0; margin: 10px 0; }
 .lateral_nav ul { margin: 0 0 0 0px; }
 .lateral_nav ul li a { color: inherit;  text-decoration: none; }

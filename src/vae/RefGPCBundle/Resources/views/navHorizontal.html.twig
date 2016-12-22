@@ -1,37 +1,31 @@
-<!--<header>-->
-<div class="header">
-    <div class="header_entete">
-        <img src="{{ asset('img/logo_orange.gif') }}" class="logoOrange" alt="logo orange" />
-        <div class="titre"><a href="{{ path('vae_refgpc_home', { 'base': base|default('MP') }) }}">Référentiel GPC</a></div>
+    <img src="{{ asset('img/logo_orange.gif') }}" class="logoOrange" alt="logo orange" />
+    <div class="titre"><a href="{{ path('vae_refgpc_home', { 'base': base|default('MP') }) }}">Référentiel GPC</a></div>
 
-            <div class="nav">
-                <div><a href="{{ path('vae_refgpc_home', { 'base': 'MP' }) }}" 
-                        class="{{ cssMenuHorizontal['classCSSLienMP']|default('') }}">
-                        Midi-Pyrénées
-                    </a>
-                </div>
-                <div class="separateur">
-                    <a href="{{ path('vae_refgpc_home', { 'base': 'LR' }) }}"
-                       class="{{ cssMenuHorizontal['classCSSLienLR']|default('') }}">
-                       Languedoc-Roussillon
-                    </a>
-                </div>
-                <div>
-                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                            <a href="#">{{ app.user.username }}</a>
-                            <a href="{{ path('fos_user_security_logout') }}">  Déconnexion</a>
-                        {% else %}
-                            <a href="{{ path('fos_user_security_login') }}"
-                               class="{% if cssMenuHorizontal['classCSSLienAD'] is not defined %}
-                               {{ cssMenuHorizontal['classCSSLienAD']|default('actif') }}
-                               {% endif %}
-                               {% if cssMenuHorizontal['classCSSLienAD'] is defined %}
-                               {{ cssMenuHorizontal['classCSSLienAD'] }}
-                               {% endif %}">
-                               Administration</a>
-                        {% endif %}
-                    
-                </div>
+        <div class="nav">
+            <div><a href="{{ path('vae_refgpc_home', { 'base': 'MP' }) }}" 
+                    class="{{ cssMenuHorizontal['classCSSLienMP']|default('') }}">
+                    Midi-Pyrénées
+                </a>
             </div>
-    </div>
-</div>
+            <div class="separateur">
+                <a href="{{ path('vae_refgpc_home', { 'base': 'LR' }) }}"
+                   class="{{ cssMenuHorizontal['classCSSLienLR']|default('') }}">
+                   Languedoc-Roussillon
+                </a>
+            </div>
+            <div>
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <a href="#">{{ app.user.username }}</a>
+                    <a href="{{ path('fos_user_security_logout') }}">  Déconnexion</a>
+                {% else %}
+                    <a href="{{ path('fos_user_security_login') }}"
+                       class="{% if cssMenuHorizontal['classCSSLienAD'] is not defined %}
+                       {{ cssMenuHorizontal['classCSSLienAD']|default('actif') }}
+                       {% endif %}
+                       {% if cssMenuHorizontal['classCSSLienAD'] is defined %}
+                       {{ cssMenuHorizontal['classCSSLienAD'] }}
+                       {% endif %}">
+                       Administration</a>
+                {% endif %}             
+            </div>
+        </div>

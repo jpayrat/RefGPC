@@ -1,33 +1,57 @@
+<div class="col-lg-9" style="border: 1px solid #000">
 
+<div class="row">
+    <div class="col-lg-9" style="border: 1px solid #990000">
 
-Détail de l'îlot : {{ dump(detailIlot) }} <br />
-
+    {{ detailIlot.getIlocodeilot }} - [{{ detailIlot.getIlolibelleilot }}] 
+    - Utilisé : {{ detailIlot.getTIloUsed.getUidused }}
     
-    {{ detailIlot.getIlocodeilot }} - [{{ detailIlot.getIlolibelleilot }}]
-    // 
-    Service : {{ detailIlot.getTIloSedidservdem.getSedidservdem }}
-    // 
-    Type de l'îlot : {{ detailIlot.getTIloTiidtypeilot.getTiidtypeilot }}
-    // 
-    Optimisé : {% if detailIlot.getIlooptim == 0 %} Non {% else %} Oui {% endif %}
-    // 
-    Utilisé : {{ detailIlot.getTIloUsed.getUidused }}
+    </div>
     
+<div class="row">
+    <div class="col-lg-6">
+        
+    Compétence / Type d'îlot : {{ detailIlot.getTIloCoidcompetence.getCoIdCompetence }}
     <br />
-    
+    Service utilisateur de l'îlot : {{ detailIlot.getTIloSedidservdem.getSedidservdem }}
+                                    - {{ detailIlot.getTIloSedidservdem.getSedlibelleservdem }}
+    <br />
     Domaine d'activité : {{ detailIlot.getTIloDaiddomact.getDaiddomact }}
-    // 
-    Compétence : {{ detailIlot.getTIloCoidcompetence.getCoIdCompetence }}
-    // 
-    Zone d'intervention : {{ detailIlot.getTSitesSiidsite.getSilibellesite }}
-    // 
-    Entreprise : {{ detailIlot.getTIloEnidentreprise.getEnlibelleentreprise }}
-    
+                         - {{ detailIlot.getTIloDaiddomact.getDalibelledomact }}
     <br />
-    
-    Commentaire : {{ detailIlot.getIloinfo }}
+    Complément domaine d'activité : {{ detailIlot.getTIloDaiddomact.getDadetaildomact }}
     <br />
-    Commentaire Admin : {{ detailIlot.getIloinfoadmin }}
+    Entreprise(s) intervenante(s) : {{ detailIlot.getTIloEnidentreprise.getEnlibelleentreprise }}
+    <br />
+    Ilot Optimisé : {% if detailIlot.getIlooptim == 0 %} Non {% else %} Oui {% endif %}
+    <br />
+    SAV / PROD : {{ detailIlot.getTIloPrsidprodsav.getPrslibelleprodsav }}
+    <br />
+    Périmètre d'intervention : {{ detailIlot.getTSitesSiidsite.getSilibellesite }}
+    </div>
+  
     
-    <br /><br />
+    <div class="col-lg-3">
+    Date de création : {{ detailIlot.getIlodatecreation }}
+    <br />
+    Modifié le : {{ detailIlot.getIlodatemodif }}
+    <br />
+    Type d'îlot : {{ detailIlot.getTIloTiidtypeilot.getTiidtypeilot }}
+    <br />
+    Bandeau : {{ detailIlot.getTIloBanidbandeau.getBanidbandeau }} -
+              {{ detailIlot.getTIloBanidbandeau.getBanlibellebandeau }}
+    </div>
+</div>
+    
+<div class="row">
+    <div class="col-lg-9">
+    Commentaire :   {{ detailIlot.getIloinfo }}
+    <br />
+    Commentaire admin : {{ detailIlot.getIloinfoadmin }}
+    </div>
+</div>   
+    
+</div>
+
+</div>
     
